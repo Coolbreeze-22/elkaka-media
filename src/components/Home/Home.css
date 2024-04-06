@@ -1,0 +1,17 @@
+.homeAppBar{
+    border-radius: 4;
+    margin-bottom: 15px;
+    display: flex;
+    padding: 16px;
+}
+/* .HomeGrid{
+    flex-direction: column-reverse;
+} */
+.HomeGrid1 >.HomePaper{
+    border-radius: 30px;
+    margin-top: 15px;
+    padding: 16px;
+}
+.paginate{
+    box-shadow: 1px 3px 12px -3px black;
+}

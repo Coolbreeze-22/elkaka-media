@@ -1,0 +1,20 @@
+.appBar {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    background-color: rgb(5, 14, 99);
+    margin: 30px 0;
+    /* border: 1px solid gray; */
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 0 rgb(255, 0, 0);
+    /* box-shadow: 0px 2px 5px 0 gray; */
+  }
+  .appImg {
+    height: 50px;
+    margin: 3px 3px 0px 2px;
+  }
+  /* .appBar1 {
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+    } */
