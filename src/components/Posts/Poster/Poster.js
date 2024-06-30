@@ -1,68 +1,132 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
+import "./Poster.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
 import { Card, CardActions, CardContent, CardMedia, Button, Typography,
 } from "@mui/material";
-// import DeleteIcon from '@mui/icons-material/Delete';
-import { ThumbUpAlt, Delete, MoreHoriz, ThumbUpAltOutlined } from "@mui/icons-material";
-import moment from "moment";
-import "./Poster.css";
+import { ThumbUpAlt, Delete, MoreHoriz, ThumbUpAltOutlined,
+} from "@mui/icons-material";
 import { PostContext } from "../../../context/context";
 import { deletePost, likePost } from "../../../actions/postActions";
-import { useDispatch } from "react-redux";
-
 
 const Poster = ({ post }) => {
   const { setCurrentId } = useContext(PostContext);
   const dispatch = useDispatch();
-  // console.log(post._id);
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("profile"));
-  // console.log(post?.creator)
-  // console.log(user?.result?._id)
-  // console.log(user?.result?.sub)
+  const [likes, setLikes] = useState(post?.likes)
+
+  const userId = user?.result?.sub || user?.result._id
+  const hasLiked = likes.find((id) => id === userId)
+
+  const handleLike = async () => {
+    dispatch(likePost(post._id));
+    if (hasLiked) {
+      setLikes(likes.filter((like) => like !== userId))
+    } else {
+      setLikes([ ...likes, userId])
+    }
+  }
+  
+  const openPost = (id) => {
+    // dispatch(getPostById(id))
+    navigate(`/posts/${id}`)}
+
 
   const Likes = () => {
-    if (post.likes.length > 0) {
-      return post.likes.find((like) => like === (user?.result?.sub || user?.result._id))
-      ? (
-        <><ThumbUpAlt fontSize="small" />&nbsp;{post.likes.length > 2 ? `You & ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` } </>
+    if (likes.length > 0) {
+      return likes.find(
+        (like) => like === userId
+      ) ? (
+        <>
+          <ThumbUpAlt fontSize="small" />
+          &nbsp;
+          {likes.length > 2
+            ? `You & ${likes.length - 1} others`
+            : `${likes.length} like${
+                likes.length > 1 ? "s" : ""
+              }`}{" "}
+        </>
       ) : (
-        <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'} </>
-      )
+        <>
+          <ThumbUpAltOutlined fontSize="small" />
+          &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}{" "}
+        </>
+      );
     }
-    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>
+    return (
+      <>
+        <ThumbUpAltOutlined fontSize="small" />
+        &nbsp;Like
+      </>
+    );
   };
 
+
+
   return (
-    <Card className="posterCard" sx={{borderRadius:'20px'}}>
-      <CardMedia className="posterMedia" sx={{ height: 0, paddingTop: '100%'  }} image={post.selectedFile} title={post.title} />
-      <div className="posterOverlay" >
-      {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (
-        <Button sx={{color: "white", zIndex: 10 }} size="large" onClick={() => setCurrentId(post._id)}>
-          <MoreHoriz fontSize="default" />
-        </Button>
-        )}
+    <Card className="posterCard" elevation={4} sx={{ borderRadius: "20px" }}>
+        <div className="posterOverlay">
+          {(user?.result?.sub === post?.creator ||
+            user?.result?._id === post?.creator) && (
+            <Button className="posterOverlayBtn"
+              sx={{ color: "black", zIndex: 9 }}
+              size="small"
+              onClick={() => setCurrentId(post._id)}
+            >
+              <MoreHoriz fontSize="small" />
+            </Button>
+          )}
+        </div>
+      <div className="posterDivBtn" onClick={() => openPost(post._id)}>
+        <CardMedia
+          className="posterMedia"
+          sx={{ height: "50px", paddingTop: "100%" }}
+          image={post.selectedFile}
+          title={post.title}
+        />
+        <div className="posterOverlay2">
+          <Typography sx={{fontSize: {xs:"20px", sm:"15px", md:"15px"}, fontFamily:"monospace"}}>{post.name}</Typography>
+        </div>
       </div>
-      <div className="posterOverlay2">
-        <Typography variant="h6">{post.name}</Typography>
-        <Typography variant="h6">{moment(post.createdAt).fromNow()}</Typography>
-      </div>
-      <div className="posterDetails">
-        <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
-      </div>
-      <CardContent>
-        <Typography variant="h6">{post.title}</Typography>
-        <Typography className="posterMessage" variant="body1" gutterBottom>{post.message}</Typography>
-      </CardContent>
+        <div className="posterDetails">
+          <Typography variant="body2" color="textSecondary">
+            {post.tags.map((tag) => `#${tag} `)}
+          </Typography>
+        </div>
+        <CardContent>
+          <Typography variant="h6">{post.title}</Typography>
+          <Typography className="posterMessage" variant="body1" gutterBottom>
+            {post.message}
+          </Typography>
+        </CardContent>
+
+        <Typography variant="caption" sx={{paddingLeft:"10px"}}>
+          {moment(post.createdAt).fromNow()}
+        </Typography>
       <CardActions className="posterActions">
-        <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
+        <Button
+          size="small"
+          color="primary"
+          disabled={!user?.result}
+          onClick={handleLike}
+        >
           <Likes />
         </Button>
 
-        {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (
-          <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(deletePost(post._id))}>
+        {(user?.result?.sub === post?.creator ||
+          user?.result?._id === post?.creator) && (
+          <Button
+            size="small"
+            color="error"
+            disabled={!user?.result}
+            onClick={() => dispatch(deletePost(post._id))}
+          >
             <Delete fontSize="small" />
-          Delete
+            Delete
           </Button>
-          )}
+        )}
       </CardActions>
     </Card>
   );

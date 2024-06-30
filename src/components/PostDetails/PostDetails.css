@@ -1,0 +1,68 @@
+
+@media only screen and (max-width: 600px) {
+    /* .postDetailsCard{
+        box-shadow: 0px 2px 5px 0 gray;
+        background-color: #11255c;
+        color: white;
+        border-radius: 10px;
+
+    } */
+    .postDetailsImg{
+        height: 400px;
+        width: 100%;
+        border-radius: 1px;
+    }
+    .postDetailsDiv2{
+        margin: 25px 0 0 0;
+    }
+}    
+@media only screen and (min-width: 600px) {
+    .postDetailsCard{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        border-radius: 3px;
+    }
+    .postDetailsImg{
+        height: 300px;
+        width: 400px;
+        border-radius: 1px;
+    }
+    .postDetailsDiv2{
+        margin: 0 0 0 10px;
+    }
+}
+
+
+
+.postDetailsCard{
+    box-shadow: 0px 2px 5px 0 rgb(255, 0, 0);
+    background-color: #11255c;
+    color: white;
+    border-radius: 10px;
+
+}
+.postDetailsDiv{
+    padding: 10px 0 0 10px;
+}
+.postDetailsRecommend{
+    background-color: #e1e1e4;
+    color: white;
+    padding: 10px 5px;
+}
+.RecommendP{
+    color:blue;
+    text-transform: uppercase;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+div>.RecommendTypo{
+    color:white;
+    background-color: #11255c;
+    padding: 5px;
+    border-radius: 3px;
+    border: 2px dotted white
+
+}
+

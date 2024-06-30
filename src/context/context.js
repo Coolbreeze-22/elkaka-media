@@ -3,14 +3,10 @@ import React, { createContext, useState } from 'react'
 export const PostContext = createContext();
 
 export const Provider = ({ children }) => {
-    
-    const [ currentId, setCurrentId] = useState();
-    // const [ deleteWarning, setDeleteWarning ] = useState();
-    // const [ currentPage, setCurrentPage ] = useState(1);
-    // const [ snackBar, setSnackBar ] = useState("");
+    const [user, setUser] = useState();
 
     return(
-        <PostContext.Provider value={{ currentId, setCurrentId }}>
+        <PostContext.Provider value={{ user, setUser }}>
             {children}
         </PostContext.Provider>
     )

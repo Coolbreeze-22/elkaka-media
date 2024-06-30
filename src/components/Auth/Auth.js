@@ -1,15 +1,14 @@
 import React from "react";
 import "./Auth.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import jwt_decode from 'jwt-decode';
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import Input from "./Input";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import { useDispatch } from "react-redux";
-import jwt_decode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
 import { signIn, signUp } from "../../actions/authActions";
-
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
@@ -17,12 +16,13 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [ formData, setFormData ] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
+  const user = JSON.parse(localStorage.getItem("profile"))
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+    // console.log(formData)
     
     if (isSignup) {
       dispatch(signUp(formData, navigate))
@@ -34,12 +34,13 @@ const Auth = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value})
   };
-
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
-
   const switchMode = () => setIsSignup(!isSignup);
 
-
+  // useEffect(() => {
+  //   if(user) navigate("/posts")
+  // }, [navigate, user]) no longer necessary bcos user is now a glabal state, set in navbar used in appjs and navbar. Location triggers it in navbar which makes page rerender each time route changes.
+  
   const success = async (res) => {
     const decode = jwt_decode(res.credential);
     // console.log(res, decode);
@@ -57,6 +58,7 @@ const Auth = () => {
     console.log(error)
   }
   
+  if(!user)
   return (
     <Container component="main" maxWidth="xs">
       <Paper elevation={3} sx={{padding:'10px'}}>

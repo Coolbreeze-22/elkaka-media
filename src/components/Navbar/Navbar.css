@@ -1,20 +1,84 @@
-.appBar {
+@media only screen and (max-width: 600px) {
+  .appBarMob {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /* justify-content:space-around; */
+    background-color: rgb(5, 14, 99);
+    opacity: 0.99;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    padding: 10px 15px;
+    position: fixed;
+    top: 0;
+    bottom:2%;
+    left: 0;
+    right: 50px;
+    z-index: 10;
+    transition: 2s;
+  }
+  .appBarSmall {
     display: flex;
     flex-direction: row;
     justify-content:space-around;
     background-color: rgb(5, 14, 99);
     margin: 30px 0;
-    /* border: 1px solid gray; */
+    padding: 3px 0;
     border-radius: 5px;
     box-shadow: 0px 2px 5px 0 rgb(255, 0, 0);
-    /* box-shadow: 0px 2px 5px 0 gray; */
+  }
+  header>.appBarMobClose{
+    background-color: white;
+    color: blue;
+    border-radius: 10px 0;
+  }
+  .appBarMobHeader{
+    display: flex;
+    justify-content: space-between;
+    color: rgb(136, 137, 230);
+    text-transform: capitalize;
+  }
+  .appBarMobH2{
+    padding: 12px;
+    border: 1px solid rgb(79, 76, 211);
+    margin-bottom: 5px;
+  }
+  .appBarMobH2:hover{
+    padding: 14px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+  .appBarLap{
+    display: none;
+  }
+  .noAppBarMob{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .appBarLap {
+    /* box-sizing: border-box; */
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    background-color: rgb(5, 14, 99);
+    margin: 30px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 0 rgb(255, 0, 0);
   }
   .appImg {
     height: 50px;
     margin: 3px 3px 0px 2px;
   }
-  /* .appBar1 {
-      display: flex;
-      flex-direction: row;
-      justify-content:space-between;
-    } */
+  .appBarMob {
+   display: none;
+}
+  .appBarSmall {
+   display: none;
+}
+.noAppBarMob{
+    display: none;
+  }
+}

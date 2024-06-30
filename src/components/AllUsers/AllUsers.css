@@ -1,0 +1,43 @@
+.all{
+    background-color: #11255c;
+    color: white;
+    padding: 20px 10px;
+    border-radius: 5px;
+    transition: 2s;
+}
+
+@media only screen and (max-width: 600px) {
+.allDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 5px;
+    border: 1px dotted #ffffff;
+    border-radius: 10px;
+}
+.allTypo{
+    flex-basis: 80%;
+    /* border: 1px solid red; */
+}
+}
+
+@media only screen and (min-width: 600px) {
+.allDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 5px;
+    border: 1px dotted #ffffff;
+    border-radius: 10px;
+}
+.allTypo{
+    flex-basis: 40%;
+    /* border: 1px solid red; */
+}
+}
+
+.test{
+    color: greenyellow;
+}

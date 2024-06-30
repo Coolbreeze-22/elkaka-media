@@ -1,0 +1,38 @@
+.user{
+    background-color: #11255c;
+    color: white;
+    padding: 15px 15px 40px 15px;
+    border-radius: 5px;
+    box-shadow: 0 1 2 0 black;
+    transition: 2s;
+}
+
+.userTypo1{border-bottom: 1px dotted rgb(73, 84, 233);
+}
+.userSpan{
+    color: rgb(167, 197, 236);
+    font-size: 20px;
+    font-weight:700;
+    font-family:monospace ;
+}
+.userCenter{
+    margin: 20px 0 10px 0;
+}
+/* @media only screen and (max-width: 600px) {
+.all{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 5px;
+    border: 1px dotted #ffffff;
+    border-radius: 10px;
+}
+
+} */
+
+
+.test{
+    border-style:outset;
+
+}
