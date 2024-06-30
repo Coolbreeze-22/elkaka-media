@@ -36,10 +36,6 @@ const Auth = () => {
   };
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
   const switchMode = () => setIsSignup(!isSignup);
-
-  // useEffect(() => {
-  //   if(user) navigate("/posts")
-  // }, [navigate, user]) no longer necessary bcos user is now a glabal state, set in navbar used in appjs and navbar. Location triggers it in navbar which makes page rerender each time route changes.
   
   const success = async (res) => {
     const decode = jwt_decode(res.credential);

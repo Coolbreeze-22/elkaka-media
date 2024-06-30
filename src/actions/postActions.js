@@ -40,7 +40,8 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     }
 };
 
-export const createPost = (post, page) => async (dispatch) => {
+export const createPost = (post, page) => {
+    return async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const { data } = await api.createPost(post, page);
@@ -52,7 +53,7 @@ export const createPost = (post, page) => async (dispatch) => {
         console.log(error);
     }
 }
-
+}
 
 export const likePost = (id) => async (dispatch) => {
     try {

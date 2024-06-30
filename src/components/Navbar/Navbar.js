@@ -48,7 +48,7 @@ const Navbar = () => {
       // if (decodedToken.exp * 1000 < new Date().getTime) logout(); this is not working, wrap date() with moment to make it work and remove .getTime
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location, logout, user]);
+  }, [location]);
 
   return (
     <header>

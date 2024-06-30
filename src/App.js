@@ -11,11 +11,41 @@ import AllUsers from "./components/AllUsers/AllUsers.js";
 import User from "./components/AllUsers/User/User.js";
 import { PostDetails } from "./components/PostDetails/PostDetails";
 import Profile from "./components/Profile/Profile.jsx";
+import { useEffect } from "react";
+
+// const IsUserLoggedIn = ({children}) => {
+//   const { user } = useContext(PostContext);
+//   const localUser = user?.result?._id;
+//     // useEffect(() => {
+//       if (!localUser) {
+//         return children;
+//       } else {
+//         return <Navigate to="/posts" />
+//       }
+//     // },[])
+//   }
 
 function App() {
   const GOOGLE_ID = process.env.REACT_APP_GOOGLE_ID;
   const { user } = useContext(PostContext);
-  const localUser = user?.result
+  const localUser = user?.result?._id;
+
+  const IsUserLoggedIn = ({children}) => {
+    // useEffect(() => {
+      if (!localUser) {
+        return children;
+      } else {
+        return <Navigate to="/posts" />
+      }
+    // },[])
+  }
+  const IsUserProfile = ({children}) => {
+      if (localUser) {
+        return children;
+      } else {
+        return <Navigate to="/posts" />
+      }
+  }
 
   const admin1 = localUser?.isAdmin && localUser?.level >0;
   const admin2 = localUser?.isAdmin && localUser?.level >1;
@@ -30,22 +60,10 @@ function App() {
             <Route path="/posts" element={<Home />} />
             <Route path="/posts/search" element={<Home />} />
             <Route path="/posts/:id" element={<PostDetails />} />
-            <Route
-              path="/profile"
-              element={localUser?.email ? <Profile /> : <Navigate replace to="/posts" /> }
-            />
-            <Route
-              path="/auth"
-              element={!localUser ? <Auth /> : <Navigate replace to="/posts" />}
-            />
-            <Route
-              path="/users"
-              element={admin1 ? <AllUsers /> : <Navigate replace to="/posts" />}
-            />
-            <Route
-              path="/users/user/:id"
-              element={admin2 ? <User /> : <Navigate replace to="/posts" />}
-            />
+            <Route path="/profile" element={ <IsUserProfile><Profile /></IsUserProfile>} />
+            <Route path="/auth" element={ <IsUserLoggedIn><Auth /></IsUserLoggedIn>} />
+            <Route path="/users" element={admin1 ? <AllUsers /> : <Navigate replace to="/posts" />}/>
+            <Route path="/users/user/:id" element={admin2 ? <User /> : <Navigate replace to="/posts" />}/>
           </Routes>
         </Container>
       </BrowserRouter>
