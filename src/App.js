@@ -13,18 +13,6 @@ import { PostDetails } from "./components/PostDetails/PostDetails";
 import Profile from "./components/Profile/Profile.jsx";
 import { useEffect } from "react";
 
-// const IsUserLoggedIn = ({children}) => {
-//   const { user } = useContext(PostContext);
-//   const localUser = user?.result?._id;
-//     // useEffect(() => {
-//       if (!localUser) {
-//         return children;
-//       } else {
-//         return <Navigate to="/posts" />
-//       }
-//     // },[])
-//   }
-
 function App() {
   const GOOGLE_ID = process.env.REACT_APP_GOOGLE_ID;
   const { user } = useContext(PostContext);
