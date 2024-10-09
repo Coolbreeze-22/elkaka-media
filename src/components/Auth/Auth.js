@@ -79,7 +79,7 @@ const Auth = () => {
           <Button type="submit" fullWidth variant="contained" color="primary" sx={{marginY:"10px"}}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
-          <Button fullWidth variant="text"><GoogleLogin 
+          <Button fullWidth variant="text" disabled><GoogleLogin 
                onSuccess={success}
                onError={error}
                /></Button>

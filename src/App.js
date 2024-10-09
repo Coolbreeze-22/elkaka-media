@@ -11,10 +11,10 @@ import AllUsers from "./components/AllUsers/AllUsers.js";
 import User from "./components/AllUsers/User/User.js";
 import { PostDetails } from "./components/PostDetails/PostDetails";
 import Profile from "./components/Profile/Profile.jsx";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 function App() {
-  const GOOGLE_ID = process.env.REACT_APP_GOOGLE_ID;
+  const GOOGLE_ID = process.env.GOOGLE_ID;
   const { user } = useContext(PostContext);
   const localUser = user?.result?._id;
 
