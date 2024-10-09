@@ -14,7 +14,7 @@ import Profile from "./components/Profile/Profile.jsx";
 // import { useEffect } from "react";
 
 function App() {
-  const GOOGLE_ID = process.env.GOOGLE_ID;
+  const GOOGLE_ID = process.env.REACT_APP_GOOGLE_ID;
   const { user } = useContext(PostContext);
   const localUser = user?.result?._id;
 
