@@ -31,7 +31,7 @@
   /* background-blend-mode:hard-light; */
 }
 .posterNoMedia {
-  background-color: #010929;
+  background-color: #11255c;
   color: white;
   width: 40%;
   padding: 0 0 2px 7px;
