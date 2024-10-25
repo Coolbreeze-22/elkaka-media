@@ -169,7 +169,6 @@ const Post = ({ post }) => {
         >
           <Likes />
         </Button>
-
         <Button
           size="small"
           color="primary"
