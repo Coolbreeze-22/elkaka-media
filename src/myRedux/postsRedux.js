@@ -1,40 +1,30 @@
-// import { FETCH_POSTS, FETCH_QUERY, FETCH_ID, FETCH_OTHERS } from '../actions/actionTypes';
+import { FETCH_POSTS, CREATE, LIKE, UPDATE, DELETE,COMMENT, DELETE_COMMENT, FETCH_POST_BY_SEARCH, FETCH_POST_BY_ID, POST_LOADING } from '../actions/actionTypes';
 
-const postsRedux = (state ={ posts: [], post:{}}, action) => {
-    // console.log(action.payload);
+const postsRedux = (state ={ posts: [], post:{}, recommendPosts: [], isLoading: false}, action) => {
     switch (action.type) {
-        case 'FETCH_POSTS':
+        case FETCH_POSTS:
             return {...state, posts: action.payload.posts};
-        case 'FETCH_ID':
+        case FETCH_POST_BY_ID:
             return {...state, post: action.payload};
-        case 'FETCH_QUERY':
-            return {...state, posts: action.payload.posts};
-        case 'CREATE':
+        case FETCH_POST_BY_SEARCH:
+            return {...state, posts: action.payload.posts, recommendPosts: action.payload.posts};
+        case CREATE:
             return {...state, posts: action.payload.finalPosts};
-        case 'DELETE':
+        case DELETE:
             return {...state, posts: state.posts.filter((p) => p._id !== action.payload)};
-        case 'UPDATE':
-        case 'LIKE':
+        case UPDATE:
+        case LIKE:
             return {...state, posts: state.posts.map((item) => item._id === action.payload._id ? action.payload : item)};
-        case 'COMMENT':
-            return {...state, posts: state.posts.map((item) => item._id === action.payload._id ? action.payload : item)};
-        case 'DELETE_COMMENT':
-            return {...state, post:{...state.post, comments: state.post.comments.filter((item) => item._id !== action.payload)}};
-            
+        case COMMENT:
+            return {...state, post: action.payload };
+        case DELETE_COMMENT:
+            return {...state, post: action.payload };
+        case POST_LOADING:
+            return { ...state, isLoading: action.payload };
+
         default:
             return state;
     }
 }
 
 export default postsRedux;
-
-
-
-// switch (key) {
-//   case value:
-    
-//     break;
-
-//   default:
-//     break;
-// }

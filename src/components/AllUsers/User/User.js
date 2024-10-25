@@ -8,9 +8,9 @@ import {
   getUserById,
   makeAdmin,
   removeAdmin,
-  levels,
+  adminLevels,
   deleteUser,
-} from "../../../actions/authActions";
+} from "../../../actions/userActions";
 import {
   Container,
   Typography,
@@ -25,49 +25,66 @@ import {
 import { AdminPanelSettings, Close } from "@mui/icons-material";
 
 const User = () => {
-  const { user } = useSelector((state) => state.auth);
-  const { isLoading } = useSelector((state) => state.others);
-  const localUser = JSON.parse(localStorage.getItem("profile")).result;
-
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
+  const { user, isLoading, error: { userError }} = useSelector((state) => state.auth);
+  const localUser = JSON.parse(localStorage.getItem(userProfile)).result;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [level, setLevel] = useState("");
   const [activeId, setActiveId] = useState("");
   const [deleteWarningId, setDeleteWarningId] = useState("");
   const [levelError, setLevelError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getUserById(id));
   }, [id]);
-  
+
+  const handleErrorMessage = (message) => {
+    if (message) {
+      setErrorMessage(message);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 4000);
+    }
+  };
+
   const adminLevel = (id) => {
     setActiveId(id);
     setTimeout(() => {
       setActiveId("");
     }, 3000);
   };
-  const handleLevel = (id) => {
-    if (level >= 0 && level < 4) {
-      dispatch(levels(id, { newLevel: level }));
+
+  const handleMakeAdmin = async (id) => {
+    const message = await dispatch(makeAdmin(id));
+    handleErrorMessage(message);
+  };
+
+  const handleRemoveAdmin = async (id) => {
+    const message = await dispatch(removeAdmin(id));
+    handleErrorMessage(message);
+  };
+
+  const handleLevel = async (id) => {
+    if (level > 0 && level < 4) {
+      const message = await dispatch(adminLevels(id, { newLevel: level }));
       setLevel("");
+      handleErrorMessage(message);
     } else {
       setLevelError(true);
+      setTimeout(() => {
+        setLevelError(false);
+      }, 4000);
     }
   };
 
-  const handleMakeAdmin = (id) => {
-    dispatch(makeAdmin(id));
-  };
-
-  const handleRemoveAdmin = (id) => {
-    dispatch(removeAdmin(id));
-  };
-
-  const handleDeleteUser = (id) => {
-    dispatch(deleteUser(id));
+  const handleDeleteUser = async (id) => {
+    const message = await dispatch(deleteUser(id));
     navigate("/users");
     setDeleteWarningId("");
+    handleErrorMessage(message);
   };
 
   if (!isLoading && !user.email)
@@ -162,15 +179,11 @@ const User = () => {
                     {levelError && (
                       <div style={{ color: "red", padding: "0 0 5px 0" }}>
                         Level from 0 - 3
-                        <Button
-                          variant="outlined"
-                          size="small"
-                          sx={{ marginLeft: "5px" }}
-                          color="success"
-                          onClick={() => setLevelError(false)}
-                        >
-                          Clear
-                        </Button>
+                      </div>
+                    )}
+                    {errorMessage && (
+                      <div style={{ color: "red", padding: "0 0 5px 0" }}>
+                        {errorMessage}
                       </div>
                     )}
                     <TextField
@@ -180,7 +193,7 @@ const User = () => {
                       value={level}
                       type="number"
                       size="small"
-                      sx={{ backgroundColor: "white", borderRadius: "20px" }}
+                      sx={{ backgroundColor: "white", borderRadius: "15px" }}
                       onChange={(e) => setLevel(e.target.value)}
                       InputProps={
                         level && {
@@ -214,7 +227,7 @@ const User = () => {
                 variant="contained"
                 color="warning"
                 size="small"
-                style={{ marginTop: "20px", marginBottom:"10px" }}
+                style={{ marginTop: "20px", marginBottom: "10px" }}
                 onClick={() => handleMakeAdmin(user._id)}
               >
                 MAKE ADMIN
@@ -253,7 +266,8 @@ const User = () => {
                 marginTop: "20px",
               }}
             >
-              {(user.isAdmin && localUser.level > user.level) || (user.isAdmin && localUser.isOwner)  ? (
+              {(user.isAdmin && localUser.level > user.level) ||
+              (user.isAdmin && localUser.isOwner) ? (
                 <Button
                   variant="contained"
                   color="warning"

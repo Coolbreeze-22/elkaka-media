@@ -2,18 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./AllUsers.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  getUsers,
-  getUserById,
-  deleteUser,
-  addAdmin,
-  deleteAdmin,
-  updateUserModel,
-} from "../../actions/authActions";
+import { getUsers, updateUserModel } from "../../actions/userActions";
 import {
   Button,
   IconButton,
-  Grid,
   Typography,
   Container,
   Avatar,
@@ -21,19 +13,12 @@ import {
   InputAdornment,
   CircularProgress,
 } from "@mui/material";
-import {
-  Delete,
-  DeleteForever,
-  AdminPanelSettings,
-  AddModerator,
-  Person,
-  Close,
-} from "@mui/icons-material";
+import { AdminPanelSettings, Person, Close } from "@mui/icons-material";
 
 const AllUsers = () => {
-  const { users } = useSelector((state) => state.auth);
-  const { isLoading } = useSelector((state) => state.others);
-  const user = JSON.parse(localStorage.getItem("profile"))?.result;
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
+  const { users, isLoading } = useSelector((state) => state.auth);
+  const user = JSON.parse(localStorage.getItem(userProfile))?.result;
   const [search, setSearch] = useState("");
   const [activeId, setActiveId] = useState("");
   const dispatch = useDispatch();
@@ -52,7 +37,7 @@ const AllUsers = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   const openUser = (id) => {
     navigate(`/users/user/${id}`);
@@ -74,9 +59,7 @@ const AllUsers = () => {
         <h1 className="postsMessage">No Users</h1>
       </center>
     );
-  // if (!admin) {
-  //   navigate("/posts")
-  // }
+
   if (admin1)
     return (
       <Container maxWidth="sm" className="all">
@@ -125,19 +108,23 @@ const AllUsers = () => {
                     </IconButton>
                   )}
                 </Typography>
-
+                <Avatar sx={{display:{ sm: "none"}}} onClick={() => openUser(u._id)}>
+                  <Person sx={{ color: "black" }} />
+                </Avatar>
                 <Typography variant="body2" className="allTypo">
                   {u.email}
                 </Typography>
-                <Avatar onClick={() => openUser(u._id)}>
+                <Avatar sx={{display:{xs: "none", sm:"yes"}}} onClick={() => openUser(u._id)}>
                   <Person sx={{ color: "black" }} />
                 </Avatar>
+                <Button variant="outlined" sx={{color:"white"}} onClick={() => openUser(u._id)}>
+                  Profile
+                </Button>
               </div>
             ))}
             {users.map((u) => {
               u.isOwner && (
                 <Button
-                  // disabled
                   variant="contained"
                   size="small"
                   color="error"

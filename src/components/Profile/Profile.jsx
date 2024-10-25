@@ -3,7 +3,7 @@ import "./Profile.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import { deleteUser } from "../../actions/authActions";
+import { deleteUser } from "../../actions/userActions";
 import {
   Container,
   Typography,
@@ -15,7 +15,8 @@ import {
 import { AdminPanelSettings } from "@mui/icons-material";
 
 const Profile = () => {
-  const user = JSON.parse(localStorage.getItem("profile"))?.result;
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
+  const user = JSON.parse(localStorage.getItem(userProfile))?.result;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,14 +36,7 @@ const Profile = () => {
     navigate("/users");
     setDeleteWarningId("");
   };
-
-  if (!user)
-    return (
-      <center>
-        <h1 className="postsMessage">No Profile</h1>
-      </center>
-    );
-  else {
+  if(user?._id)
     return (
       <Container maxWidth="sm" className="profile">
         <center>
@@ -147,7 +141,6 @@ const Profile = () => {
         </Button>
       </Container>
     );
-  }
 };
 
 export default Profile;

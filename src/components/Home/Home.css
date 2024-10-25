@@ -3,10 +3,10 @@
     margin-bottom: 15px;
     padding: 16px;
 }
-/* .HomeGrid{
-    flex-direction: column-reverse;
-} */
-.HomeGrid1 >.HomePaper{
+
+.HomeGrid2 >.HomePaper{
+    background-color: #010929;
+    color: white;
     border-radius: 50px;
     margin-top: 15px;
     padding: 10px;

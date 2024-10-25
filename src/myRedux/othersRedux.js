@@ -1,9 +1,5 @@
-const othersRedux = (others = { isLoading: true }, action) => {
+const othersRedux = (others = {}, action) => {
   switch (action.type) {
-    case "START_LOADING":
-      return { ...others, isLoading: true };
-    case "END_LOADING":
-      return { ...others, isLoading: false };
     case "FETCH_OTHERS":
       return {
         ...others,

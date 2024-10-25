@@ -17,6 +17,7 @@ import decode from "jwt-decode";
 // import moment from "moment";
 
 const Navbar = () => {
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
   const { user, setUser } = useContext(PostContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Navbar = () => {
     setUser();
     navigate("/");
   };
-  const userProfile = () => {
+  const myProfile = () => {
     navigate("/profile");
     setSideBar(false);
   };
@@ -45,9 +46,9 @@ const Navbar = () => {
     if (token) {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < Date.now()) logout();
-      // if (decodedToken.exp * 1000 < new Date().getTime) logout(); this is not working, wrap date() with moment to make it work and remove .getTime
+      // if (decodedToken.exp * 1000 < new Date().getTime) logout(); not working, wrap date() with moment to make it work and remove .getTime
     }
-    setUser(JSON.parse(localStorage.getItem("profile")));
+    setUser(JSON.parse(localStorage.getItem(userProfile)));
   }, [location]);
 
   return (
@@ -64,11 +65,11 @@ const Navbar = () => {
             Memories
           </Link>
         </Typography>
-        {user ? (
+        {user?.result?._id  || user?.result?.sub ? (
           <>
             <Avatar
               src={user.result.picture}
-              alt={user.result.name.charAt(1)}
+              alt={user.result.name.charAt(0)}
               sx={{ marginTop: "2px", border: "1px solid white" }}
             />
             <IconButton sx={{ color: "red" }} onClick={logout}>
@@ -87,7 +88,7 @@ const Navbar = () => {
           <IconButton className="appBarMobClose" onClick={handleNavbar}>
             <Close />
           </IconButton>
-          {user ? (
+          {user?.result?._id  || user?.result?.sub ? (
             <>
               <Typography
                 variant="h6"
@@ -109,7 +110,7 @@ const Navbar = () => {
             </>
           ) : null}
         </header>
-        <h3 className="appBarMobH2" onClick={userProfile}>Profile</h3>
+        <h3 className="appBarMobH2" onClick={myProfile}>Profile</h3>
         <h3 className="appBarMobH2" onClick={handleNavigate}>Home</h3>
         <h3 className="appBarMobH2" onClick={handleNavigate}>Create Post</h3>
         <h3 className="appBarMobH2" onClick={handleNavigate}>About</h3>
@@ -141,7 +142,7 @@ const Navbar = () => {
         )}
         {user?.result?.isAdmin && user?.result?.level > 1 &&
         <div style={{ marginTop:"20px"}}>
-            <Button variant="contained" size="small" color="info" href="/users">
+            <Button variant="contained" size="small" color="info" onClick={()=>{navigate("/users"); setSideBar(false)}}>
                 ADMIN PANEL
             </Button>
           </div>}
@@ -156,7 +157,7 @@ const Navbar = () => {
         </Typography>
         <img src={Things} alt="Things" className="appImg" />
 
-        {user ? (
+        {user?.result?._id  || user?.result?.sub ? (
           <>
             <Typography
               variant="h6"
@@ -175,7 +176,7 @@ const Navbar = () => {
               variant="outlined"
               color="info"
               sx={{ marginY: "10px" }}
-              onClick={userProfile}
+              onClick={myProfile}
             >
               Profile
             </Button>

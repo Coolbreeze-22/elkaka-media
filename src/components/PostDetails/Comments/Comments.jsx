@@ -1,61 +1,62 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Comments.css";
-import { Typography, TextField, Button, Grid, IconButton } from "@mui/material";
 import { useDispatch } from "react-redux";
+import { Typography, TextField, Button, Grid, IconButton } from "@mui/material";
 import { commentPost, deleteComment } from "../../../actions/postActions";
 import { Delete } from "@mui/icons-material";
-// import { v4 as uuidv4 } from "uuid";
 
 const Comments = ({ post }) => {
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
   const [comments, setComments] = useState(post?.comments);
+  const user = JSON.parse(localStorage.getItem(userProfile))?.result;
   const [userComment, setUserComment] = useState("");
-  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
   const commentsRef = useRef();
-  // console.log(comments);
 
-  const handleClick = async () => {
-    const newComment = { message: `${user?.result?.name}: ${userComment}` };
-    const finalComment = await dispatch(commentPost(newComment, post._id));
-    setComments(finalComment);
+  useEffect(() => {
+    setComments(post?.comments);
+  }, [post._id, post.comments.length]);
+
+  // post.com.lgth in dependency array, makes allComents below unuseful
+
+  const handleMakeComment = async () => {
+    const newComment = { message: `${user?.name}: ${userComment}` };
+    const allComments = await dispatch(commentPost(newComment, post._id));
+    // setComments(allComments);
     setUserComment("");
     commentsRef.current.scrollIntoView();
   };
 
-  // const handleDelete = async (cId, pId) => {
-  //   const post = { pId };
-  //   const newComment = await dispatch(deleteComment(cId, post));
-  //   setComments(newComment);
-  // };
-
-  const handleDelete = (cId, pId) => {
-    const post = { pId };
-    dispatch(deleteComment(cId, post));
-    setComments(comments.filter((c) => c._id !== cId))
-  }
+  const handleDelete = async (commentId, postId) => {
+    const post = { postId };
+    const allComments = await dispatch(deleteComment(commentId, post));
+    // setComments(allComments)
+  };
 
   return (
-    <div>
+    <div style={{ backgroundColor: "white" }}>
       <Typography
         gutterBottom
         variant="h6"
         sx={{
           paddingBottom: "15px",
+          textAlign: "center",
+          display: comments.length ? "true" : "none",
         }}
       >
         Comments
       </Typography>
       <div className="comment">
-        <div className={comments.length ? "comment2a" : "comment2b"}>
+        <div className={comments?.length ? "comment2a" : "comment2b"}>
           {comments.length ? (
-            comments.map((c, i) => (
+            comments.map((comment, i) => (
               <Grid
                 container
                 spacing={1}
                 key={i}
                 sx={{
                   margin: "10px 0",
-                  boxShadow: "0 0px 2px 0px gray",
+                  boxShadow: "0 0px 2px 0px blue",
                   borderRadius: "5px",
                   maxWidth: "99%",
                 }}
@@ -63,41 +64,63 @@ const Comments = ({ post }) => {
                 <Grid item xs={10}>
                   <Typography gutterBottom variant="subtitle1">
                     <b style={{ textTransform: "capitalize" }}>
-                      {c.message.split(":")[0]}
+                      {comment.message.split(":")[0]}
                     </b>
                     <br />
-                    {c.message.split(": ")[1]}
+                    {comment.message.split(": ")[1]}
                   </Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  {(user?.result?.sub === c?.creator ||
-                    user?.result?._id === c?.creator ||
-                    user?.result?.sub === post?.creator ||
-                    user?.result?._id === post?.creator) && (
+                  {user?.sub === comment?.creatorId ||
+                  user?._id === comment?.creatorId ||
+                  user?.sub === post?.creatorId ||
+                  user?._id === post?.creatorId ||
+                  (user?.isOwner && !comment?.isCreatorOwner) ||
+                  (user?.isOwner &&
+                    comment?.isCreatorOwner &&
+                    (user?._id === comment?.creatorId ||
+                      user?.level > comment?.creatorLevel)) ||
+                  (!user?.isOwner &&
+                    !comment?.isCreatorOwner &&
+                    user?.isAdmin &&
+                    user?.level > comment?.creatorLevel) ? (
                     <IconButton
-                      sx={{ padding: "0", color: "gray" }}
+                      color="error"
                       aria-label="delete"
-                      onClick={() => handleDelete(c._id, post._id)}
+                      onClick={() => handleDelete(comment._id, post._id)}
                     >
                       <Delete />
                     </IconButton>
-                  )}
+                  ) : null}
                 </Grid>
                 <div ref={commentsRef} />
               </Grid>
             ))
           ) : (
-            <center>
+            <center style={{ color: "#06023b" }}>
+              <Typography
+                gutterBottom
+                variant="h6"
+                sx={{
+                  paddingBottom: "15px",
+                }}
+              >
+                Comments
+              </Typography>
               <h2>Hey!</h2>
               <h4>
-                <em>Be the first to comment</em>
+                <em>
+                  {user?._id
+                    ? "Be the first to comment"
+                    : "Login and be the first to comment"}
+                </em>
               </h4>
             </center>
           )}
         </div>
-        {user?.result?.name && (
+        {user?.name && (
           <div className="comment4">
-            <Typography gutterBottom variant="h6">
+            <Typography gutterBottom variant="subtitle1" fontStyle={"italic"}>
               Write a comment
             </Typography>
             <TextField
@@ -116,7 +139,7 @@ const Comments = ({ post }) => {
               disabled={!userComment}
               variant="contained"
               color="primary"
-              onClick={handleClick}
+              onClick={handleMakeComment}
             >
               Comment
             </Button>
