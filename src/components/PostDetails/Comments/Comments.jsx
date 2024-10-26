@@ -48,7 +48,7 @@ const Comments = ({ post }) => {
       </Typography>
       <div className="comment">
         <div className={comments?.length ? "comment2a" : "comment2b"}>
-          {comments.length ? (
+          {comments?.length ? (
             comments.map((comment, i) => (
               <Grid
                 container
@@ -64,10 +64,10 @@ const Comments = ({ post }) => {
                 <Grid item xs={10}>
                   <Typography gutterBottom variant="subtitle1">
                     <b style={{ textTransform: "capitalize" }}>
-                      {comment.message.split(":")[0]}
+                      {comment?.message?.split(":")[0]}
                     </b>
                     <br />
-                    {comment.message.split(": ")[1]}
+                    {comment?.message?.split(": ")[1]}
                   </Typography>
                 </Grid>
                 <Grid item xs={2}>
