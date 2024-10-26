@@ -21,7 +21,6 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: FETCH_POSTS, payload: data });
     dispatch({ type: FETCH_OTHERS, payload: data });
     dispatch({ type: POST_LOADING, payload: false });
-    console.log(data)
   } catch (error) {
     dispatch({ type: POST_LOADING, payload: false });
   }
