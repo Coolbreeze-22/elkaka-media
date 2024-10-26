@@ -17,20 +17,16 @@ const Comments = ({ post }) => {
     setComments(post?.comments);
   }, [post._id, post.comments.length]);
 
-  // post.com.lgth in dependency array, makes allComents below unuseful
-
-  const handleMakeComment = async () => {
+  const handleMakeComment = () => {
     const newComment = { message: `${user?.name}: ${userComment}` };
-    const allComments = await dispatch(commentPost(newComment, post._id));
-    // setComments(allComments);
+    dispatch(commentPost(newComment, post._id));
     setUserComment("");
     commentsRef.current.scrollIntoView();
   };
 
-  const handleDelete = async (commentId, postId) => {
+  const handleDelete = (commentId, postId) => {
     const post = { postId };
-    const allComments = await dispatch(deleteComment(commentId, post));
-    // setComments(allComments)
+    dispatch(deleteComment(commentId, post));
   };
 
   return (
@@ -48,7 +44,7 @@ const Comments = ({ post }) => {
       </Typography>
       <div className="comment">
         <div className={comments?.length ? "comment2a" : "comment2b"}>
-          {comments.length ? (
+          {comments?.length ? (
             comments.map((comment, i) => (
               <Grid
                 container
@@ -64,10 +60,10 @@ const Comments = ({ post }) => {
                 <Grid item xs={10}>
                   <Typography gutterBottom variant="subtitle1">
                     <b style={{ textTransform: "capitalize" }}>
-                      {comment.message.split(":")[0]}
+                      {comment?.message?.split(":")[0]}
                     </b>
                     <br />
-                    {comment.message.split(": ")[1]}
+                    {comment?.message?.split(": ")[1]}
                   </Typography>
                 </Grid>
                 <Grid item xs={2}>
