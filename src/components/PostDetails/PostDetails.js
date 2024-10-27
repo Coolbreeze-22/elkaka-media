@@ -36,7 +36,7 @@ export const PostDetails = () => {
     if (post?.tags) {
       dispatch(getPostsBySearch({ tags: post?.tags.join(",") }));
     }
-  }, [post]);
+  }, []);
 
   const Recommended = ({ title, name, message, likes, selectedFile }) => (
     <div

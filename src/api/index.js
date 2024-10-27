@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
-// const API = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const API = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 const userProfile = process.env.REACT_APP_USER_PROFILE;
 
@@ -21,7 +20,7 @@ export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 export const commentPost = (comment, id) => API.patch(`/posts/${id}/commentPost`, { comment });
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`)
-export const deleteComment = (commentId, post) => API.patch(`/posts/comments/${commentId}`, post);
+export const deleteComment = (commentId, postId) => API.patch(`/posts/comments/${commentId}`, postId);
 
 
 export const signIn = (formData) => API.post('/users/signin', formData);
