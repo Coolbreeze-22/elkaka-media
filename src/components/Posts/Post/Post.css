@@ -1,5 +1,6 @@
 .posterCard {
   height: 100%;
+  box-shadow: 0px 0px 5px 2px red;
 }
 .postInfo {
   position: relative;
@@ -22,8 +23,7 @@
 .posterHeader {
   background-color: #11255c;
   color: white;
-  padding: 3px;
-  margin-bottom: 5px;
+  padding: 3px 5px;
   border-radius: 2px;
 }
 .posterMedia {

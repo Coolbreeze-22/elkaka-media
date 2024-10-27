@@ -25,7 +25,6 @@ export const PostDetails = () => {
     post?._id && recommendPosts.filter(({ _id }) => _id !== post._id);
 
   const openPost = (postId) => {
-    dispatch(getPostById(postId));
     navigate(`/posts/${postId}`);
   };
 
@@ -44,9 +43,9 @@ export const PostDetails = () => {
       style={{
         cursor: "pointer",
         height: "100%",
-        backgroundColor: "#11255c",
+        backgroundColor: "#020c27",
         borderRadius: "10px",
-        border: "2px dotted white",
+        border: "1px dotted white",
       }}
     >
       <div style={{ padding: "0 5px 0 5px" }}>
@@ -65,9 +64,9 @@ export const PostDetails = () => {
 
   if (isLoading && !post?._id) {
     return (
-      <Paper elevation={6}>
+      <div className="postsDetailsLoading">
         <CircularProgress size="6em" />
-      </Paper>
+      </div>
     );
   } else if (!isLoading && !post?._id) {
     return (
@@ -78,7 +77,7 @@ export const PostDetails = () => {
   }
   return (
     <div>
-      <div className="postDetailsCard">
+      <div className="postDetailsMain">
         <div className="postDetailsDiv">
           <Typography variant="h4" gutterBottom component="center">
             {post.title}
@@ -127,21 +126,21 @@ export const PostDetails = () => {
         <Divider sx={{ margin: "20px 0" }} />
       </div>
       {isLoading && !recommendedPosts.length ? (
-        <Paper elevation={6}>
-          <CircularProgress size="4em" />
-        </Paper>
+        <div className="postsDetailsLoading">
+          <CircularProgress size="6em" />
+        </div>
       ) : !isLoading && !recommendedPosts.length ? (
         <Paper
           elevation={6}
           sx={{
             textAlign: "center",
-            fontSize: "40px",
+            fontSize: "20px",
             padding: "10px 0",
             backgroundColor: "#11255c",
             color: "white",
           }}
         >
-          No Recommended Post
+          Related posts will appear here
         </Paper>
       ) : (
         <div className="postDetailsRecommend">

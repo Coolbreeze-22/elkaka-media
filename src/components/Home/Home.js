@@ -25,7 +25,6 @@ const Home = () => {
   const [title, setTitle] = useState(myTitle !== "none" ? myTitle : "");
   const [tags, setTags] = useState(myTags !== "none" ? [myTags] : []);
 
-
   const searchPost = () => {
     if (title || tags.length) {
       dispatch(
@@ -45,20 +44,20 @@ const Home = () => {
   };
 
   useEffect(() => {
-      if (myTitle !== "none" || myTags !== "none") {
-        setTitle(myTitle !== "none" ? myTitle : "");
-        dispatch(
-          getPostsBySearch({
-            title: myTitle !== "none" ? myTitle.trim() : "",
-            tags: tags.join(","),
-            page,
-          })
-        );
-      } else if (myTitle === "none" && myTags === "none") {
-        dispatch(getPosts(page));
-        clear()
-      }
-  }, [page, myTitle, navigate]);
+    if (myTitle !== "none" || myTags !== "none") {
+      setTitle(myTitle !== "none" ? myTitle : "");
+      dispatch(
+        getPostsBySearch({
+          title: myTitle !== "none" ? myTitle.trim() : "",
+          tags: tags.join(","),
+          page,
+        })
+      );
+    } else if (myTitle === "none" && myTags === "none") {
+      dispatch(getPosts(page));
+      clear();
+    }
+  }, [page, myTitle]);
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
@@ -111,12 +110,9 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={9} className="HomeGrid2">
             <Posts />
             {posts.length ? (
-              <Paper
-                sx={{ boxShadow: "0px 0px 1.5px 0 black" }}
-                className="HomePaper"
-              >
+              <div className="HomePaginate">
                 <Paginate page={page} title={title} tags={tags} />
-              </Paper>
+              </div>
             ) : null}
           </Grid>
         </Grid>

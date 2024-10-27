@@ -30,7 +30,7 @@ const Comments = ({ post }) => {
   };
 
   return (
-    <div style={{ backgroundColor: "white" }}>
+    <div className="commentMain">
       <Typography
         gutterBottom
         variant="h6"
@@ -52,7 +52,7 @@ const Comments = ({ post }) => {
                 key={i}
                 sx={{
                   margin: "10px 0",
-                  boxShadow: "0 0px 2px 0px blue",
+                  boxShadow: "0 0px 3px 0px red",
                   borderRadius: "5px",
                   maxWidth: "99%",
                 }}
@@ -93,7 +93,7 @@ const Comments = ({ post }) => {
               </Grid>
             ))
           ) : (
-            <center style={{ color: "#06023b" }}>
+            <center style={{ color: "white" }}>
               <Typography
                 gutterBottom
                 variant="h6"
@@ -123,11 +123,11 @@ const Comments = ({ post }) => {
               fullWidth
               rows={3}
               variant="outlined"
+              sx={{backgroundColor:"white"}}
               label="Comment"
               multiline
               value={userComment}
               onChange={(e) => setUserComment(e.target.value)}
-              className="commentText"
             />
             <Button
               sx={{ marginTop: "10px" }}

@@ -1,31 +1,31 @@
 
 @media only screen and (max-width: 600px) {
     .postDetailsImg{
-        /* height: 100%; */
+        max-height: 700px;
         width: 100%;
         border-radius: 1px;
     }
 }    
 @media only screen and (min-width: 600px) {
-    .postDetailsCard{
+    .postDetailsMain{
         display: flex;
         flex-direction: row;
         justify-content:space-between;
         border-radius: 3px;
     }
     .postDetailsImg{
-        height: 350px;
+        max-height: 500px;
         width: 400px;
         border-radius: 1px;
     }
     .postDetailsDiv2{
-        padding: 5px;
+        padding: 10px 10px 7px 0 ;
     }
 }
 
 
 
-.postDetailsCard{
+.postDetailsMain{
     box-shadow: 0px 2px 5px 0 red;
     background-color: #11255c;
     color: white;
@@ -36,9 +36,10 @@
     padding: 10px 0 0 10px;
 }
 .postDetailsRecommend{
-    background-color: white;
+    background-color: #11255c;
     color: white;
     padding: 10px 5px;
+    box-shadow: 0px 0px 5px 2px red;
 }
 .RecommendP{
     color:blue;
@@ -48,14 +49,13 @@
     border-radius: 5px;
 }
 div>.RecommendTypo{
-    background-color: #11255c;
+    background-color: #ffffff;
+    color: #11255c;
     padding: 5px;
     border-radius: 3px;
-    border: 2px dotted white
-
 }
-.postsDetailsNoPost{
-    background-color: #010929;
+.postsDetailsNoPost, .postsDetailsLoading{
+    background-color: #11255c;
     color: white;
     padding: 10px 0;
     border-radius: 10px;

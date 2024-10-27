@@ -1,3 +1,15 @@
+.commentMain{
+  background-color: #11255c;
+  color: white;
+  padding: 30px 17px;
+  box-shadow: 0 0px 5px 2px red;
+}
+.comment4 {
+  box-shadow: 0 0px 5px 2px red;
+  padding: 10px;
+
+}
+
 @media only screen and (min-width: 600px) {
   .comment {
     box-sizing: border-box;
@@ -7,19 +19,15 @@
   .comment2a {
     width: 45%;
     padding: 10px;
-    box-shadow: 0 0px 3px 0px blue;
+    box-shadow: 0 0px 5px 2px red;
     max-height: 300px;
     overflow-y: scroll;
   }
   .comment2b {
     width: 45%;
     padding: 10px;
-    box-shadow: 0 0px 3px 0px blue;
+    box-shadow: 0 0px 5px 2px red;
     border-radius: 10px;
-  }
-  .comment4 {
-    margin-top: 30px;
-    margin-left: 60px;
   }
 }
 
@@ -28,17 +36,17 @@
     box-sizing: border-box;
   }
   .comment2a {
-    box-shadow: 0 0px 3px 0px blue;
+    box-shadow: 0 0px 5px 2px red;
     max-height: 300px;
     overflow-y: scroll;
     padding: 10px;
   }
   .comment2b {
+    box-shadow: 0 0px 5px 2px red;
     padding: 5px;
-    box-shadow: 0 0px 3px 0px blue;
     border-radius: 10px;
   }
-  .comment3 {
-    margin-top: 30px;
+  .comment4 {
+    margin-top: 20px;
   }
 }

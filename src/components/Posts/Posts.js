@@ -12,13 +12,13 @@ const Posts = () => {
   } else if (!isLoading && !posts.length) {
     return (
       <center>
-        <h1 className="postsMessage">No Post</h1>
+        <h1 className="postsNoPost">No Post</h1>
       </center>
     );
   }
   
   return (
-    <Grid container alignItems="stretch" spacing={3}>
+    <Grid container alignItems="stretch" spacing={2}>
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={6} md={3}>
           <Post post={post} />

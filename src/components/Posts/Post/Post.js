@@ -49,7 +49,6 @@ const Post = ({ post }) => {
   };
 
   const openPost = (id) => {
-    dispatch(getPostById(id));
     navigate(`/posts/${id}`);
   };
 
@@ -79,7 +78,7 @@ const Post = ({ post }) => {
   };
 
   return (
-    <Card className="posterCard" elevation={4} sx={{ borderRadius: "20px" }} >
+    <Card className="posterCard" sx={{ borderRadius: "10px", boxShadow: "0px 2px 5px 0px red" }} >
       <div className="posterOverlay">
         <Button
           className="posterOverlayBtn"
@@ -139,28 +138,26 @@ const Post = ({ post }) => {
       <header className="posterHeader" onClick={() => openPost(post._id)}>
         <Typography
           sx={{
-            fontSize: { xs: "20px", sm: "15px", md: "15px" },
+            fontSize: { xs: "15px", sm: "15px", md: "15px" },
             fontFamily: "monospace",
           }}
         >
           {post.name}
         </Typography>
       </header>
-      <div className="posterDetails">
-        <Typography variant="body2" color="textSecondary">
-          {post.tags.map((tag) => `#${tag} `)}
-        </Typography>
-      </div>
       <CardContent onClick={() => setIsInfo(false)}>
         <Typography variant="h6">{post.title}</Typography>
         <Typography className="posterMessage" variant="body1" gutterBottom>
           {post.message}
         </Typography>
       </CardContent>
+        <Typography variant="body2" color="textSecondary" sx={{margin:"3px"}}>
+          {post.tags.map((tag) => `#${tag} `)}
+        </Typography>
       <Typography variant="caption" sx={{ paddingLeft: "10px" }}>
         {moment(post.createdAt).fromNow()}
       </Typography>
-      <CardActions className="posterActions">
+      <CardActions>
         <Button
           size="small"
           color="primary"
