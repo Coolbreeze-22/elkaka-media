@@ -55,7 +55,7 @@ const Form = ({ page }) => {
     );
   } else {
     return (
-      <Paper sx={{ boxShadow: "0px 0px 1.5px 0 black" }}>
+      <div className="formMain">
         <form
           autoComplete="off"
           noValidate
@@ -78,7 +78,7 @@ const Form = ({ page }) => {
             label="Title"
             name="title"
             fullWidth
-            sx={{ marginBottom: "8px" }}
+            sx={{ margin: "10px 0", backgroundColor: "white" }}
             value={postData.title}
             onChange={(e) =>
               setPostData({ ...postData, title: e.target.value })
@@ -88,10 +88,10 @@ const Form = ({ page }) => {
           <TextField
             variant="outlined"
             fullWidth
-            sx={{ marginBottom: "8px" }}
             name="message"
             label="Message"
             value={postData.message}
+            sx={{ margin: "10px 0", backgroundColor: "white" }}
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })
             }
@@ -100,10 +100,10 @@ const Form = ({ page }) => {
           <TextField
             variant="outlined"
             fullWidth
-            sx={{ marginBottom: "8px" }}
             name="tags"
             label="Tags"
             value={postData.tags}
+            sx={{ margin: "10px 0", backgroundColor: "white" }}
             onChange={(e) =>
               setPostData({ ...postData, tags: e.target.value.split(",") })
             }
@@ -141,7 +141,7 @@ const Form = ({ page }) => {
             Clear
           </Button>
         </form>
-      </Paper>
+      </div>
     );
   }
 };
