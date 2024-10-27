@@ -6,6 +6,7 @@ export const COMMENT = 'COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_POST_BY_SEARCH = 'FETCH_POST_BY_SEARCH';
+export const FETCH_RELATED_POSTS = 'FETCH_RELATED_POSTS';
 export const FETCH_POST_BY_ID = 'FETCH_ID';
 export const FETCH_OTHERS = 'FETCH_OTHERS';
 export const POST_LOADING = 'POST_LOADING';

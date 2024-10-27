@@ -1,6 +1,8 @@
 .posterCard {
   height: 100%;
   box-shadow: 0px 0px 5px 2px red;
+  background-color: #11255c;
+  border-radius: 10px;
 }
 .postInfo {
   position: relative;
@@ -8,7 +10,6 @@
 .postInfoH4 {
   position: absolute;
   right: 0px;
-  left: 10%;
   z-index: 10;
   background-color: #010929;
   color: white;
@@ -21,9 +22,10 @@
   border: 1px dotted #344caa;
 }
 .posterHeader {
-  background-color: #11255c;
-  color: white;
+  background-color: white;
+  color: #11255c;
   padding: 3px 5px;
+  margin: 0 3px;
   border-radius: 2px;
 }
 .posterMedia {
@@ -46,5 +48,4 @@ div > .posterOverlayBtn {
   position: absolute;
   top: 5px;
   right: 8px;
-  background-color: rgba(236, 232, 232, 0.5);
 }

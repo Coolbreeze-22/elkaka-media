@@ -3,7 +3,7 @@ import "./PostDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
-import { getPostById, getPostsBySearch } from "../../actions/postActions";
+import { getPostById, getRelatedPosts } from "../../actions/postActions";
 import Comments from "./Comments/Comments";
 import {
   Paper,
@@ -34,9 +34,9 @@ export const PostDetails = () => {
 
   useEffect(() => {
     if (post?.tags) {
-      dispatch(getPostsBySearch({ tags: post?.tags.join(",") }));
+      dispatch(getRelatedPosts({ tags: post?.tags.join(",") }));
     }
-  }, []);
+  }, [post]);
 
   const Recommended = ({ title, name, message, likes, selectedFile }) => (
     <div
@@ -45,7 +45,7 @@ export const PostDetails = () => {
         height: "100%",
         backgroundColor: "#020c27",
         borderRadius: "10px",
-        border: "1px dotted white",
+        border: "1px dotted red",
       }}
     >
       <div style={{ padding: "0 5px 0 5px" }}>
@@ -138,6 +138,7 @@ export const PostDetails = () => {
             padding: "10px 0",
             backgroundColor: "#11255c",
             color: "white",
+            boxShadow: "0px 0px 5px 2px red"
           }}
         >
           Related posts will appear here

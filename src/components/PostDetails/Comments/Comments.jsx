@@ -12,7 +12,7 @@ const Comments = ({ post }) => {
   const [userComment, setUserComment] = useState("");
   const dispatch = useDispatch();
   const commentsRef = useRef();
-
+  
   useEffect(() => {
     setComments(post?.comments);
   }, [post._id, post.comments.length]);
@@ -67,7 +67,8 @@ const Comments = ({ post }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  {user?.sub === comment?.creatorId ||
+                  {
+                  user?.sub === comment?.creatorId ||
                   user?._id === comment?.creatorId ||
                   user?.sub === post?.creatorId ||
                   user?._id === post?.creatorId ||

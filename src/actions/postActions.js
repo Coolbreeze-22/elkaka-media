@@ -8,6 +8,7 @@ import {
   COMMENT,
   DELETE_COMMENT,
   FETCH_POST_BY_SEARCH,
+  FETCH_RELATED_POSTS,
   FETCH_POST_BY_ID,
   FETCH_OTHERS,
   POST_LOADING,
@@ -42,6 +43,17 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     dispatch({ type: POST_LOADING, payload: true });
     const { data } = await api.getPostsBySearch(searchQuery);
     dispatch({ type: FETCH_POST_BY_SEARCH, payload: data });
+    dispatch({ type: FETCH_OTHERS, payload: data });
+    dispatch({ type: POST_LOADING, payload: false });
+  } catch (error) {
+    dispatch({ type: POST_LOADING, payload: false });
+  }
+};
+export const getRelatedPosts = (searchQuery) => async (dispatch) => {
+  try {
+    dispatch({ type: POST_LOADING, payload: true });
+    const { data } = await api.getRelatedPosts(searchQuery);
+    dispatch({ type: FETCH_RELATED_POSTS, payload: data });
     dispatch({ type: FETCH_OTHERS, payload: data });
     dispatch({ type: POST_LOADING, payload: false });
   } catch (error) {
@@ -90,8 +102,10 @@ export const commentPost = (comment, id) => async (dispatch) => {
   } catch (error) {console.log(error)}
 };
 export const deleteComment = (commentId, postId) => async (dispatch) => {
+  console.log(commentId, 'my', postId)
   try {
     const { data } = await api.deleteComment(commentId, postId);
     dispatch({ type: DELETE_COMMENT, payload: data });
-  } catch (error) {}
+    console.log(data)
+  } catch (error) {console.log(error)}
 };

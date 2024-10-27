@@ -78,15 +78,15 @@ const Post = ({ post }) => {
   };
 
   return (
-    <Card className="posterCard" sx={{ borderRadius: "10px", boxShadow: "0px 2px 5px 0px red" }} >
+    <div className="posterCard" >
       <div className="posterOverlay">
         <Button
           className="posterOverlayBtn"
-          sx={{ color: "black", zIndex: 9 }}
+          sx={{ color: "white", zIndex: 9}}
           size="small"
           onClick={() => setIsInfo(!isInfo)}
         >
-          <MoreHoriz fontSize="small" />
+          <MoreHoriz />
         </Button>
       </div>
       {isInfo && (
@@ -151,7 +151,7 @@ const Post = ({ post }) => {
           {post.message}
         </Typography>
       </CardContent>
-        <Typography variant="body2" color="textSecondary" sx={{margin:"3px"}}>
+        <Typography variant="body2" color="darkgray" sx={{margin:"3px"}}>
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       <Typography variant="caption" sx={{ paddingLeft: "10px" }}>
@@ -161,6 +161,7 @@ const Post = ({ post }) => {
         <Button
           size="small"
           color="primary"
+          variant="contained"
           disabled={!user?._id && !user?.sub}
           onClick={handleLike}
         >
@@ -168,7 +169,8 @@ const Post = ({ post }) => {
         </Button>
         <Button
           size="small"
-          color="primary"
+          color="success"
+          variant="contained"
           disabled={!user?._id && !user?.sub}
           onClick={() => openPost(post._id)}
         >
@@ -189,7 +191,7 @@ const Post = ({ post }) => {
         <em>see more...</em>
       </footer>}
       </div>
-    </Card>
+    </div>
   );
 };
 

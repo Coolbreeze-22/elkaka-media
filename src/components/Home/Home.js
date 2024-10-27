@@ -8,7 +8,7 @@ import Form from "../Form/Form";
 import Paginate from "../Pagination/Pagination";
 import { getPostsBySearch, getPosts } from "../../actions/postActions";
 
-import { Grid, Grow, Container, Paper, TextField, Button } from "@mui/material";
+import { Grid, Grow, TextField, Button } from "@mui/material";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -67,20 +67,17 @@ const Home = () => {
 
   return (
     <Grow in>
-      <Container>
+      <div>
         <Grid container spacing={3} className="HomeGrid">
           <Grid item xs={12} sm={6} md={3}>
-            <Paper
-              sx={{ boxShadow: "0px 0px 1.5px 0 black" }}
-              className="homeAppBar"
-              color="inherit"
-            >
+            <div className="homeSearch">
               <TextField
                 name="memories"
                 label="Search Memories"
                 value={title}
                 variant="outlined"
                 fullWidth
+                sx={{ backgroundColor: "white" }}
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -89,7 +86,7 @@ const Home = () => {
                 label="Search Tags"
                 value={tags}
                 variant="outlined"
-                sx={{ margin: "10px 0" }}
+                sx={{ margin: "10px 0", backgroundColor: "white" }}
                 fullWidth
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTags(e.target.value.split(","))}
@@ -99,11 +96,23 @@ const Home = () => {
                 className="HomeSearchBtn"
                 variant="contained"
                 color="primary"
+                disabled={!title && !tags.length}
                 onClick={searchPost}
               >
                 Search
               </Button>
-            </Paper>
+              <center>
+              <Button
+                className="HomeSearchBtn"
+                variant="contained"
+                color="secondary"
+                disabled={!title && !tags.length}
+                onClick={clear}
+              >
+                Clear
+              </Button>
+              </center>
+            </div>
             <Form page={page} />
           </Grid>
 
@@ -116,7 +125,7 @@ const Home = () => {
             ) : null}
           </Grid>
         </Grid>
-      </Container>
+      </div>
     </Grow>
   );
 };

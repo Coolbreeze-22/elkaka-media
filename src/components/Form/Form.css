@@ -1,4 +1,11 @@
-
-.formForm{
-    margin: 15px ;
+.formNoUser {
+  box-shadow: 0px 0px 5px 2px red;
+  background-color: #11255c;
+  border-radius: 10px;
+  padding: 10px 0;
+  font-family: serif;
+  text-align: center;
+}
+.formForm {
+  margin: 15px;
 }

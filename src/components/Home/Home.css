@@ -1,9 +1,13 @@
-.homeAppBar{
+.homeSearch{
+    background-color: #11255c;
+    box-shadow: 0px 0px 5px 2px red;
     border-radius: 4;
     margin-bottom: 15px;
     padding: 16px;
 }
-
+div>.HomeSearchBtn, center>.HomeSearchBtn{
+    margin: 7px 0;
+}
 .HomePaginate{
     background-color: #010929;
     box-shadow: 0px 0px 5px 2px red;

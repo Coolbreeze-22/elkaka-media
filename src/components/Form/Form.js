@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/postActions";
 import { useSelector } from "react-redux";
 import { PostContext } from "../../context/context";
+import { useNavigate } from "react-router-dom";
 
 const Form = ({ page }) => {
   const userProfile = process.env.REACT_APP_USER_PROFILE;
@@ -18,6 +19,7 @@ const Form = ({ page }) => {
   const [postData, setPostData] = useState(initial);
   const [formError, setFormError] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -46,15 +48,10 @@ const Form = ({ page }) => {
 
   if (!user?.token) {
     return (
-      <Paper elevation={4}>
-        <Typography
-          variant="h6"
-          align="center"
-          sx={{ paddingY: "20px", fontFamily: "serif" }}
-        >
-          Please sign in to create your memories
-        </Typography>
-      </Paper>
+      <div className="formNoUser">
+        Sign in to create your memories
+        <a href="/auth">Sign in</a>
+      </div>
     );
   } else {
     return (

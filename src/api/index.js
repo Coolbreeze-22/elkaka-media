@@ -15,6 +15,7 @@ API.interceptors.request.use((req) => {
 export const getPosts = (page) => API.get(`/posts?page=${page}`);
 export const getPostById = (id) => API.get(`/posts/id/${id}`);
 export const getPostsBySearch = (searchQuery) => API.get(`/posts/search?title=${searchQuery.title}&tags=${searchQuery.tags}&page=${searchQuery.page}`);
+export const getRelatedPosts = (searchQuery) => API.get(`/posts/search?title=${searchQuery.title}&tags=${searchQuery.tags}&page=${searchQuery.page}`);
 export const createPost = (newPost, page) => API.post(`/posts/?page=${page}`, newPost);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 export const commentPost = (comment, id) => API.patch(`/posts/${id}/commentPost`, { comment });
