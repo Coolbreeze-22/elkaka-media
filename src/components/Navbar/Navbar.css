@@ -3,48 +3,48 @@
     display: flex;
     flex-direction: row;
     justify-content:space-around;
-    background-color: #050e63;
     margin: 30px 0;
     padding: 3px 0;
     border-radius: 5px;
-    box-shadow: 0px 2px 5px 0 rgb(255, 0, 0);
+    box-shadow: 0px 1px 5px 1px #344caa;
   }
   .appBarMob {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: #050e63;
+    background-color: #020c27;
     opacity: 0.99;
     color: white;
     border-radius: 0 10px 10px 0;
     padding: 10px 15px;
     position: fixed;
-    top: 0;
-    bottom:2%;
+    top: 1%;
+    bottom:20%;
     left: 0;
-    right: 50px;
+    right: 40%;
+    font-size:12px;
+    box-shadow: 0px 0px 5px 0px #344caa;
     z-index: 10;
     transition: 2s;
-  }
-  header>.appBarMobClose{
-    background-color: white;
-    color: blue;
-    border-radius: 10px 0;
   }
   .appBarMobHeader{
     display: flex;
     justify-content: space-between;
-    color: rgb(136, 137, 230);
+  }
+  header>.appBarMobTypo{
     text-transform: capitalize;
+    color: #698be0;
+    font-size:14px;
+    padding-top: 5px;
   }
   .appBarMobH2{
-    padding: 12px;
-    border: 1px solid rgb(79, 76, 211);
-    margin-bottom: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #344caa;
+    margin-bottom: 1px;
   }
   .appBarMobH2:hover{
-    padding: 14px;
-    border: 1px solid rgb(255, 255, 255);
+    padding: 8px;
+    border: 1px solid #344caa;
     border-radius: 10px;
     transition: 0.3s;
   }
@@ -61,10 +61,9 @@
     display: flex;
     flex-direction: row;
     justify-content:space-around;
-    background-color: #050e63;
     margin: 30px 0;
     border-radius: 5px;
-    box-shadow: 0px 2px 5px 0 rgb(255, 0, 0);
+    box-shadow: 0px 1px 5px 1px #344caa;
   }
   .appImg {
     height: 50px;

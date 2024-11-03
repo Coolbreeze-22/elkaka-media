@@ -77,8 +77,7 @@ export const likePost = (id) => async (dispatch) => {
   try {
     const { data } = await api.likePost(id);
     dispatch({ type: LIKE, payload: data });
-  } catch (error) {
-  }
+  } catch (error) {}
 };
 
 export const updatePost = (id, post) => async (dispatch) => {
@@ -98,14 +97,14 @@ export const commentPost = (comment, id) => async (dispatch) => {
   try {
     const { data } = await api.commentPost(comment, id);
     dispatch({ type: COMMENT, payload: data });
-    console.log(data.comments)
-  } catch (error) {console.log(error)}
+    console.log(data.comments);
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const deleteComment = (commentId, postId) => async (dispatch) => {
-  console.log(commentId, 'my', postId)
   try {
     const { data } = await api.deleteComment(commentId, postId);
     dispatch({ type: DELETE_COMMENT, payload: data });
-    console.log(data)
-  } catch (error) {console.log(error)}
+  } catch (error) {}
 };

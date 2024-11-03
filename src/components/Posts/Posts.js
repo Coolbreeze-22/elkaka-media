@@ -12,7 +12,7 @@ const Posts = () => {
   } else if (!isLoading && !posts.length) {
     return (
       <center>
-        <h1 className="postsNoPost">No Post</h1>
+        <h1>No Post</h1>
       </center>
     );
   }

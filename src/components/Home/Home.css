@@ -1,6 +1,5 @@
 .homeSearch{
-    background-color: #11255c;
-    box-shadow: 0px 0px 5px 2px red;
+    box-shadow: 0px 0px 5px 0px #344caa;
     border-radius: 4;
     margin-bottom: 20px;
     padding: 16px;
@@ -9,12 +8,8 @@ div>.HomeSearchBtn, center>.HomeSearchBtn{
     margin: 7px 0;
 }
 .HomePaginate{
-    background-color: #010929;
-    box-shadow: 0px 0px 5px 2px red;
+    box-shadow: 0px 0px 5px 0px #344caa;
     border-radius: 50px;
     margin-top: 15px;
     padding: 10px;
-}
-.paginate{
-    box-shadow: 1px 3px 12px -3px black;
 }

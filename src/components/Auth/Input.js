@@ -21,6 +21,7 @@ const Input = ({
       variant="outlined"
       required
       fullWidth
+      sx={{backgroundColor:"#698be0", borderRadius:"30px"}}
       InputProps={ name === "password" ? {
               endAdornment: (
                 <InputAdornment position="end">

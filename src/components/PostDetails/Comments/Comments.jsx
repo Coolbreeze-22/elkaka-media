@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Comments.css";
 import { useDispatch } from "react-redux";
-import { Typography, TextField, Button, Grid, IconButton } from "@mui/material";
+import { Typography, TextField, Button, Grid, IconButton, Divider } from "@mui/material";
 import { commentPost, deleteComment } from "../../../actions/postActions";
 import { Delete } from "@mui/icons-material";
 
@@ -48,11 +48,10 @@ const Comments = ({ post }) => {
             comments.map((comment, i) => (
               <Grid
                 container
-                spacing={1}
+                columnSpacing={1}
                 key={i}
                 sx={{
                   margin: "10px 0",
-                  boxShadow: "0 0px 3px 0px red",
                   borderRadius: "5px",
                   maxWidth: "99%",
                 }}
@@ -60,7 +59,7 @@ const Comments = ({ post }) => {
                 <Grid item xs={10}>
                   <Typography gutterBottom variant="subtitle1">
                     <b style={{ textTransform: "capitalize" }}>
-                      {comment?.message?.split(":")[0]}
+                      {comment?.message?.split(":")[0]}:
                     </b>
                     <br />
                     {comment?.message?.split(": ")[1]}
@@ -90,20 +89,13 @@ const Comments = ({ post }) => {
                     </IconButton>
                   ) : null}
                 </Grid>
+                <Grid item xs={12}>
+                  <Divider sx={{ backgroundColor:"#344caa"}}/></Grid>
                 <div ref={commentsRef} />
               </Grid>
             ))
           ) : (
             <center style={{ color: "white" }}>
-              <Typography
-                gutterBottom
-                variant="h6"
-                sx={{
-                  paddingBottom: "15px",
-                }}
-              >
-                Comments
-              </Typography>
               <h2>Hey!</h2>
               <h4>
                 <em>
@@ -117,14 +109,11 @@ const Comments = ({ post }) => {
         </div>
         {user?.name && (
           <div className="comment4">
-            <Typography gutterBottom variant="subtitle1" fontStyle={"italic"}>
-              Write a comment
-            </Typography>
             <TextField
               fullWidth
-              rows={3}
+              rows={2}
               variant="outlined"
-              sx={{backgroundColor:"white"}}
+              sx={{backgroundColor:"#698be0", borderRadius:"20px"}}
               label="Comment"
               multiline
               value={userComment}

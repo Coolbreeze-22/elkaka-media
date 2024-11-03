@@ -62,7 +62,7 @@ const AllUsers = () => {
 
   if (admin1)
     return (
-      <Container maxWidth="sm" className="all">
+      <Container maxWidth="md" className="all">
         {isLoading ? (
           <CircularProgress size="3em" />
         ) : (
@@ -92,7 +92,10 @@ const AllUsers = () => {
             </div>
             {generalUsers.map((u) => (
               <div key={u._id} className="allDiv">
-                <Typography variant="subtitle2" className="allTypo">
+                <Avatar onClick={() => openUser(u._id)}>
+                  <Person sx={{ color: "black" }} />
+                </Avatar>
+                <Typography variant="subtitle2" className="allTypo1">
                   {u.name}
                   {u.isAdmin && (
                     <IconButton onClick={() => adminLevel(u._id)}>
@@ -108,16 +111,10 @@ const AllUsers = () => {
                     </IconButton>
                   )}
                 </Typography>
-                <Avatar sx={{display:{ sm: "none"}}} onClick={() => openUser(u._id)}>
-                  <Person sx={{ color: "black" }} />
-                </Avatar>
-                <Typography variant="body2" className="allTypo">
+                <Typography variant="body2" className="allTypo2">
                   {u.email}
                 </Typography>
-                <Avatar sx={{display:{xs: "none", sm:"yes"}}} onClick={() => openUser(u._id)}>
-                  <Person sx={{ color: "black" }} />
-                </Avatar>
-                <Button variant="outlined" sx={{color:"white"}} onClick={() => openUser(u._id)}>
+                <Button variant="outlined" size="small" sx={{color:"white"}} onClick={() => openUser(u._id)}>
                   Profile
                 </Button>
               </div>

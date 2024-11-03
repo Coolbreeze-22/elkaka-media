@@ -45,18 +45,26 @@ export const PostDetails = () => {
         height: "100%",
         backgroundColor: "#020c27",
         borderRadius: "10px",
-        border: "1px dotted red",
+        boxShadow: "0px 0px 3px 0px #344caa",
       }}
     >
-      <div style={{ padding: "0 5px 0 5px" }}>
-        <p className="RecommendP">{name}</p>
+      <div style={{ padding: "5px 5px 0 5px" }}>
+        <center className="postDetailsRecommendCenter">
+          <b>{name}</b>
+        </center>
         <h2>{title}</h2>
         <p>{message}</p>
         <p style={{ color: "red" }}>Likes: {likes.length}</p>
       </div>
-      <div>
+      <div style={{ height: "150px" }}>
         {selectedFile && (
-          <img src={selectedFile} alt="img" width="100%" height="150px" />
+          <img
+            src={selectedFile}
+            alt="img"
+            width="100%"
+            height="150px"
+            style={{ borderRadius: " 0 0 10px 10px" }}
+          />
         )}
       </div>
     </div>
@@ -64,70 +72,72 @@ export const PostDetails = () => {
 
   if (isLoading && !post?._id) {
     return (
-      <div className="postsDetailsLoading">
-        <CircularProgress size="6em" />
+      <div>
+        <CircularProgress size="5em" />
       </div>
     );
   } else if (!isLoading && !post?._id) {
     return (
       <center>
-        <h1 className="postsDetailsNoPost">No Post</h1>
+        <h1>No Post</h1>
       </center>
     );
   }
   return (
     <div>
       <div className="postDetailsMain">
-        <div className="postDetailsDiv">
-          <Typography variant="h4" gutterBottom component="center">
-            {post.title}
-          </Typography>
-          <Typography variant="body1" gutterBottom component="p">
-            {post.message}
-          </Typography>
-          <Typography variant="h6" gutterBottom component="h2">
-            {post.tags.map((tag) => `#${tag} `)}
-          </Typography>
-          <Typography gutterBottom sx={{ textTransform: "capitalize" }}>
-            Posted by: {post.name}
-          </Typography>
-          <Typography variant="body2" gutterBottom color="gray">
-            {moment(post.createdAt).fromNow()}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              backgroundColor: "black",
-              color: "red",
-              padding: "3px",
-              width: { xs: "30%", sm: "50%" },
-              maxWidth: "50%",
-              borderRadius: "5px",
-            }}
-          >
-            Likes: {post.likes.length}
-          </Typography>
-          <Divider
-            sx={{ margin: "10px 4px 10px -5px", backgroundColor: "white" }}
-          />
-          <Typography variant="body1" paddingBottom={"8px"}>
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+        <div className="postDetailsPost">
+          <div className="postDetailsDiv1">
+            <Typography variant="h5" gutterBottom component="center">
+              {post.title}
+            </Typography>
+            <Typography variant="body1" gutterBottom component="p">
+              {post.message}
+            </Typography>
+            <Typography variant="h6" gutterBottom color="gray">
+              {post.tags.map((tag) => `#${tag} `)}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#8ea5ff",
+                padding: "3px",
+              }}
+            >
+              Likes: {post.likes.length}
+            </Typography>
+            <Typography gutterBottom sx={{ textTransform: "capitalize" }}>
+              Posted by: {post.name}
+            </Typography>
+            <Typography variant="body2" gutterBottom color="gray">
+              {moment(post.createdAt).fromNow()}
+            </Typography>
+            <Divider
+              sx={{ margin: "10px 5px 10px -5px", backgroundColor: "#344caa" }}
+            />
+            <Typography variant="body1" paddingBottom={"8px"}>
+              <strong>Realtime Chat - coming soon!</strong>
+            </Typography>
+          </div>
+          <div>
+            {post.selectedFile && (
+              <img
+                className="postDetailsImg"
+                src={post.selectedFile}
+                alt="img"
+              />
+            )}
+          </div>
         </div>
-        <div className="postDetailsDiv2">
-          {post.selectedFile && (
-            <img className="postDetailsImg" src={post.selectedFile} alt="img" />
-          )}
+        <div className="postDetailsComment">
+          <Comments post={post} />
         </div>
       </div>
-      <div>
-        <Divider sx={{ margin: "20px 0" }} />
-        <Comments post={post} />
-        <Divider sx={{ margin: "20px 0" }} />
-      </div>
+
+
       {isLoading && !recommendedPosts.length ? (
-        <div className="postsDetailsLoading">
-          <CircularProgress size="6em" />
+        <div>
+          <CircularProgress size="4em" />
         </div>
       ) : !isLoading && !recommendedPosts.length ? (
         <Paper
@@ -136,16 +146,13 @@ export const PostDetails = () => {
             textAlign: "center",
             fontSize: "20px",
             padding: "10px 0",
-            backgroundColor: "#11255c",
-            color: "white",
-            boxShadow: "0px 0px 5px 2px red"
           }}
         >
           Related posts will appear here
         </Paper>
       ) : (
-        <div className="postDetailsRecommend">
-          <Typography variant="h5" gutterBottom className="RecommendTypo">
+        <div>
+          <Typography variant="h6" gutterBottom className="RecommendTypo">
             You might also like:
           </Typography>
 

@@ -3,13 +3,7 @@ import "./Navbar.css";
 import Things from "../../images/Things.jpg";
 import { PostContext } from "../../context/context";
 import { useContext } from "react";
-import {
-  Typography,
-  Link,
-  Avatar,
-  Button,
-  IconButton,
-} from "@mui/material";
+import { Typography, Link, Avatar, Button, IconButton } from "@mui/material";
 import { Close, Menu, Logout, Login } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -54,10 +48,7 @@ const Navbar = () => {
   return (
     <header>
       <nav className="appBarSmall">
-        <IconButton
-          sx={{ color: "white", opacity: "0.7" }}
-          onClick={handleNavbar}
-        >
+        <IconButton sx={{ color: "#698be0" }} onClick={handleNavbar}>
           <Menu />
         </IconButton>
         <Typography variant="h4" sx={{ marginTop: "4px" }}>
@@ -65,7 +56,7 @@ const Navbar = () => {
             Memories
           </Link>
         </Typography>
-        {user?.result?._id  || user?.result?.sub ? (
+        {user?.result?._id || user?.result?.sub ? (
           <>
             <Avatar
               src={user.result.picture}
@@ -85,36 +76,38 @@ const Navbar = () => {
 
       <div className={sideBar ? "appBarMob" : "noAppBarMob"}>
         <header className="appBarMobHeader">
-          <IconButton className="appBarMobClose" onClick={handleNavbar}>
+          <IconButton sx={{ color: "#698be0" }} onClick={handleNavbar}>
             <Close />
           </IconButton>
-          {user?.result?._id  || user?.result?.sub ? (
+          {user?.result?._id || user?.result?.sub ? (
             <>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontFamily: "monospace",
-                  padding: "3px 10px",
-                  borderRadius: "5px",
-                  border: "1px dotted white",
-                }}
-              >
+              <Typography variant="h6" className="appBarMobTypo">
                 {user.result.name}
               </Typography>
               <Avatar
                 src={user.result.picture}
                 alt={user.result.name.charAt(0)}
                 variant="rounded"
-                sx={{ border: "1px solid red" }}
+                sx={{ border: "1px solid #698be0" }}
               />
             </>
           ) : null}
         </header>
-        <h3 className="appBarMobH2" onClick={myProfile}>Profile</h3>
-        <h3 className="appBarMobH2" onClick={handleNavigate}>Home</h3>
-        <h3 className="appBarMobH2" onClick={handleNavigate}>Create Post</h3>
-        <h3 className="appBarMobH2" onClick={handleNavigate}>About</h3>
-        <h3 className="appBarMobH2" onClick={handleNavigate}>FAQ</h3>
+        <h3 className="appBarMobH2" onClick={myProfile}>
+          Profile
+        </h3>
+        <h3 className="appBarMobH2" onClick={handleNavigate}>
+          Home
+        </h3>
+        <h3 className="appBarMobH2" onClick={handleNavigate}>
+          Create Post
+        </h3>
+        <h3 className="appBarMobH2" onClick={handleNavigate}>
+          About
+        </h3>
+        <h3 className="appBarMobH2" onClick={handleNavigate}>
+          FAQ
+        </h3>
         <center>
           <p>
             <em>Copyright Coolbreeze 2023</em>
@@ -123,9 +116,9 @@ const Navbar = () => {
         {user ? (
           <center>
             <Button
-              variant="contained"
+              variant="outlined"
               color="error"
-              sx={{ color: "white" }}
+              sx={{ fontSize: "10px" }}
               onClick={logout}
             >
               Sign Out
@@ -133,21 +126,30 @@ const Navbar = () => {
           </center>
         ) : (
           <center>
-            <Button variant="contained" color="success">
+            <Button variant="outlined" color="success" sx={{ fontSize: "10px" }}>
               <a href="/auth" style={{ color: "white" }}>
                 Sign In
               </a>
             </Button>
           </center>
         )}
-        {user?.result?.isAdmin && user?.result?.level > 1 &&
-        <div style={{ marginTop:"20px"}}>
-            <Button variant="contained" size="small" color="info" onClick={()=>{navigate("/users"); setSideBar(false)}}>
-                ADMIN PANEL
+        {user?.result?.isAdmin && user?.result?.level > 1 && (
+          <div style={{ marginTop: "20px", alignSelf:"center" }}>
+            <Button
+              variant="outlined"
+              size="small"
+              color="info"
+              sx={{ fontSize: "10px" }}
+              onClick={() => {
+                navigate("/users");
+                setSideBar(false);
+              }}
+            >
+              ADMIN PANEL
             </Button>
-          </div>}
+          </div>
+        )}
       </div>
-
 
       <div className="appBarLap">
         <Typography variant="h3" align="center">
@@ -157,7 +159,7 @@ const Navbar = () => {
         </Typography>
         <img src={Things} alt="Things" className="appImg" />
 
-        {user?.result?._id  || user?.result?.sub ? (
+        {user?.result?._id || user?.result?.sub ? (
           <>
             <Typography
               variant="h6"
@@ -190,8 +192,10 @@ const Navbar = () => {
             </Button>
           </>
         ) : (
-          <Button variant="contained" color="success" sx={{ marginY: "10px"}}>
-            <a href="/auth" style={{color:"white" }}>Sign In</a>
+          <Button variant="contained" color="success" sx={{ marginY: "10px" }}>
+            <a href="/auth" style={{ color: "white" }}>
+              Sign In
+            </a>
           </Button>
         )}
       </div>

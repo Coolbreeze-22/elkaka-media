@@ -1,63 +1,53 @@
-
-@media only screen and (max-width: 600px) {
-    .postDetailsImg{
-        max-height: 700px;
-        width: 100%;
-        border-radius: 1px;
-    }
-}    
-@media only screen and (min-width: 600px) {
-    .postDetailsMain{
-        display: flex;
-        flex-direction: row;
-        justify-content:space-between;
-        border-radius: 3px;
-    }
-    .postDetailsImg{
-        max-height: 500px;
-        width: 400px;
-        border-radius: 1px;
-    }
-    .postDetailsDiv2{
-        padding: 10px 10px 7px 0 ;
-    }
-}
-
-
-
-.postDetailsMain{
-    box-shadow: 0px 2px 5px 0 red;
-    background-color: #11255c;
-    color: white;
-    border-radius: 10px;
-
-}
-.postDetailsDiv{
-    padding: 10px 0 0 10px;
-}
-.postDetailsRecommend{
-    background-color: #11255c;
-    color: white;
-    padding: 10px 5px;
-    box-shadow: 0px 0px 5px 2px red;
-}
-.RecommendP{
-    color:blue;
-    text-transform: uppercase;
-    background-color: white;
-    padding: 5px;
+.postDetailsMain {
     border-radius: 5px;
-}
-div>.RecommendTypo{
-    background-color: #ffffff;
-    color: #11255c;
-    padding: 5px;
-    border-radius: 3px;
-}
-.postsDetailsNoPost, .postsDetailsLoading{
-    background-color: #11255c;
-    color: white;
-    padding: 10px 0;
-    border-radius: 10px;
+    padding-bottom: -2px;
+  }
+  
+  .postDetailsRecommendCenter {
+    text-transform: capitalize;
+  }
+
+  
+@media only screen and (max-width: 600px) {
+    .postDetailsPost {
+        box-shadow: 0px 0px 5px 0px #344caa;
+      }
+      .postDetailsDiv1 {
+        padding: 10px 0 10px 10px;
+      }
+    .postDetailsImg {
+    max-height: 700px;
+    width: 100%;
+  }
+  .postDetailsComment{
+    margin-top: 20px;
+  }
 }
 
+@media only screen and (min-width: 600px) {
+  .postDetailsMain {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .postDetailsPost {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 60%;
+    box-shadow: 0px 0px 5px 0px #344caa;
+  }
+  .postDetailsDiv1 {
+    padding: 10px 5px 0 10px;
+  }
+  .postDetailsImg {
+    max-height: 550px;
+    width: 400px;
+  }
+  .postDetailsComment{
+    flex-basis: 37%;
+    box-shadow: 0px 0px 5px 0px #344caa;
+  }
+  
+}

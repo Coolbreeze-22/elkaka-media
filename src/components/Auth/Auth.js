@@ -68,8 +68,8 @@ const Auth = () => {
   
   if(!user?.result._id)
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper elevation={3} sx={{padding:'10px'}}>
+    <Container  maxWidth="xs" className="authMain">
+      <main>
         <Avatar sx={{backgroundColor:"red", marginLeft:'45%'}}>
           <LockOutlined/>
         </Avatar>
@@ -105,7 +105,7 @@ const Auth = () => {
             </Grid>
           </Grid>
         </form>
-      </Paper>
+      </main>
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Form.css";
-import { TextField, Button, Typography, Paper } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/postActions";
@@ -78,7 +78,7 @@ const Form = ({ page }) => {
             label="Title"
             name="title"
             fullWidth
-            sx={{ margin: "10px 0", backgroundColor: "white" }}
+            sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
             value={postData.title}
             onChange={(e) =>
               setPostData({ ...postData, title: e.target.value })
@@ -91,7 +91,7 @@ const Form = ({ page }) => {
             name="message"
             label="Message"
             value={postData.message}
-            sx={{ margin: "10px 0", backgroundColor: "white" }}
+            sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })
             }
@@ -103,7 +103,7 @@ const Form = ({ page }) => {
             name="tags"
             label="Tags"
             value={postData.tags}
-            sx={{ margin: "10px 0", backgroundColor: "white" }}
+            sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
             onChange={(e) =>
               setPostData({ ...postData, tags: e.target.value.split(",") })
             }
@@ -121,9 +121,9 @@ const Form = ({ page }) => {
 
           <Button
             sx={{ marginY: "8px" }}
-            variant="contained"
+            variant="outlined"
             color="primary"
-            size="large"
+            size="medium"
             type="submit"
             fullWidth
           >
@@ -132,7 +132,7 @@ const Form = ({ page }) => {
 
           <Button
             sx={{ marginBottom: "8px" }}
-            variant="contained"
+            variant="outlined"
             color="error"
             size="small"
             fullWidth

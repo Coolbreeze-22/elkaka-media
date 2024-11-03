@@ -11,6 +11,7 @@ import {
   Button,
   IconButton,
   Typography,
+  Avatar,
 } from "@mui/material";
 import {
   ThumbUpAlt,
@@ -50,6 +51,9 @@ const Post = ({ post }) => {
 
   const openPost = (id) => {
     navigate(`/posts/${id}`);
+  };
+  const posterProfile = (id) => {
+    // navigate(`/profile/${id}`);
   };
 
   const Likes = () => {
@@ -135,17 +139,14 @@ const Post = ({ post }) => {
           </h4>
         </div>
       )}
-      <header className="posterHeader" onClick={() => openPost(post._id)}>
-        <Typography
-          sx={{
-            fontSize: { xs: "15px", sm: "15px", md: "15px" },
-            fontFamily: "monospace",
-          }}
-        >
-          {post.name}
-        </Typography>
-      </header>
-      <CardContent onClick={() => setIsInfo(false)}>
+      <center onClick={() => posterProfile(post.creatorId)}>
+      <Avatar
+              src={post.picture}
+              alt={post.name.charAt(0)}
+              sx={{ marginTop: "2px", border: "1px solid white" }} >{post.name.charAt(0)}</Avatar>
+          <h3 style={{ fontFamily: "monospace", margin:"5px" }}>{post.name}</h3>
+      </center>
+      <CardContent onClick={() => {setIsInfo(false); openPost(post._id)}}>
         <Typography variant="h6">{post.title}</Typography>
         <Typography className="posterMessage" variant="body1" gutterBottom>
           {post.message}
@@ -161,7 +162,6 @@ const Post = ({ post }) => {
         <Button
           size="small"
           color="primary"
-          variant="contained"
           disabled={!user?._id && !user?.sub}
           onClick={handleLike}
         >
@@ -169,8 +169,7 @@ const Post = ({ post }) => {
         </Button>
         <Button
           size="small"
-          color="success"
-          variant="contained"
+          color="primary"
           disabled={!user?._id && !user?.sub}
           onClick={() => openPost(post._id)}
         >
@@ -180,12 +179,12 @@ const Post = ({ post }) => {
       <div className="posterDivBtn" onClick={() => openPost(post._id)}>
       {post.selectedFile ?
         <CardMedia
-          className="posterMedia"
+          className="postMedia"
           sx={{ paddingTop: "100%" }}
           image={post.selectedFile}
           title={post.title}
         /> : <footer
-        className="posterNoMedia"
+        className="postNoMedia"
         onClick={() => openPost(post._id)}
       >
         <em>see more...</em>

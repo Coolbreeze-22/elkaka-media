@@ -27,7 +27,7 @@ const Home = () => {
 
   const searchPost = () => {
     if (title || tags.length) {
-      dispatch(
+      const searchError = dispatch(
         getPostsBySearch({ title: title.trim(), tags: tags.join(","), page })
       );
       navigate(
@@ -35,6 +35,9 @@ const Home = () => {
           tags.join(",") || "none"
         }&page=${page}`
       );
+      setTimeout(() => {
+        
+      }, 3000);
     }
   };
 
@@ -46,10 +49,11 @@ const Home = () => {
   useEffect(() => {
     if (myTitle !== "none" || myTags !== "none") {
       setTitle(myTitle !== "none" ? myTitle : "");
+      setTags(myTags !== "none" ? [myTags] : []);
       dispatch(
         getPostsBySearch({
           title: myTitle !== "none" ? myTitle.trim() : "",
-          tags: tags.join(","),
+          tags: myTags !== "none" ? myTags.trim() : "",
           page,
         })
       );
@@ -57,7 +61,7 @@ const Home = () => {
       dispatch(getPosts(page));
       clear();
     }
-  }, [page, myTitle]);
+  }, [page, myTitle, myTags.length]);
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
@@ -70,14 +74,14 @@ const Home = () => {
       <div>
         <Grid container spacing={3} className="HomeGrid">
           <Grid item xs={12} sm={6} md={3}>
-            <div className="homeSearch">
+            <section className="homeSearch">
               <TextField
                 name="memories"
                 label="Search Memories"
                 value={title}
                 variant="outlined"
                 fullWidth
-                sx={{ backgroundColor: "white" }}
+                sx={{ backgroundColor:"#698be0", borderRadius:"30px" }}
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -86,7 +90,7 @@ const Home = () => {
                 label="Search Tags"
                 value={tags}
                 variant="outlined"
-                sx={{ margin: "10px 0", backgroundColor: "white" }}
+                sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
                 fullWidth
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTags(e.target.value.split(","))}
@@ -112,7 +116,7 @@ const Home = () => {
                 Clear
               </Button>
               </center>
-            </div>
+            </section >
             <Form page={page} />
           </Grid>
 
