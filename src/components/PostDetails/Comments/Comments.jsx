@@ -95,7 +95,7 @@ const Comments = ({ post }) => {
               </Grid>
             ))
           ) : (
-            <center style={{ color: "white" }}>
+            <center >
               <h2>Hey!</h2>
               <h4>
                 <em>

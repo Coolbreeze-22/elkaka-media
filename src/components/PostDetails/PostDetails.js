@@ -140,16 +140,17 @@ export const PostDetails = () => {
           <CircularProgress size="4em" />
         </div>
       ) : !isLoading && !recommendedPosts.length ? (
-        <Paper
+        <div
           elevation={6}
-          sx={{
+          style={{
             textAlign: "center",
-            fontSize: "20px",
             padding: "10px 0",
+            marginTop:"30px",
+            boxShadow:"0 0 5px 0 #000b36"
           }}
         >
           Related posts will appear here
-        </Paper>
+        </div>
       ) : (
         <div>
           <Typography variant="h6" gutterBottom className="RecommendTypo">

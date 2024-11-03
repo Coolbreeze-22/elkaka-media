@@ -1,12 +1,12 @@
 .formNoUser {
-  box-shadow: 0px 0px 5px 0px #344caa;
+  box-shadow: 0px 0px 5px 0px #000b36;
   border-radius: 10px;
   padding: 10px 0;
   font-family: serif;
   text-align: center;
 }
 .formMain {
-  box-shadow: 0px 0px 5px 0px #5066c2;
+  box-shadow: 0px 0px 5px 0px #000b36;
   border-radius: 4;
   margin-bottom: 20px;
   padding: 10px 0;
