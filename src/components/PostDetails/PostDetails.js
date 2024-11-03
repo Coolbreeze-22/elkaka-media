@@ -146,7 +146,7 @@ export const PostDetails = () => {
             textAlign: "center",
             padding: "10px 0",
             marginTop:"30px",
-            boxShadow:"0 0 5px 0 #000b36"
+            boxShadow:"0 0 5px 0 #344caa"
           }}
         >
           Related posts will appear here
