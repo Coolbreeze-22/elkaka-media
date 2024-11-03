@@ -184,7 +184,7 @@ const Post = ({ post }) => {
           image={post.selectedFile}
           title={post.title}
         /> : <footer
-        className="postNoMedia"
+        className="postSeeMore"
         onClick={() => openPost(post._id)}
       >
         <em>see more...</em>

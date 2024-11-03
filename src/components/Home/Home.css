@@ -1,5 +1,5 @@
 .homeSearch{
-    box-shadow: 0px 0px 5px 0px #000b36;
+    box-shadow: 0px 0px 3px 0px #344caa;
     border-radius: 4;
     margin-bottom: 20px;
     padding: 16px;
@@ -8,13 +8,13 @@ div>.HomeSearchBtn, center>.HomeSearchBtn{
     margin: 7px 0;
 }
 .HomePaginate{
-    box-shadow: 0px 0px 5px 0px #000b36;
+    box-shadow: 0px 0px 3px 0px #344caa;
     border-radius: 50px;
     margin-top: 15px;
     padding: 10px;
 }
 section>.HomeTextField{
-    background-color: #051744;
+    background-color: #344caa;
     height: 45px;
     border-radius: 30px;
     margin-bottom: 15px;

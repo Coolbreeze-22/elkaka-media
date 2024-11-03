@@ -113,7 +113,7 @@ const Comments = ({ post }) => {
               fullWidth
               rows={2}
               variant="outlined"
-              sx={{backgroundColor:"#698be0", borderRadius:"20px"}}
+              sx={{backgroundColor:"#344caa", borderRadius:"20px"}}
               label="Comment"
               multiline
               value={userComment}
@@ -123,7 +123,7 @@ const Comments = ({ post }) => {
               sx={{ marginTop: "10px" }}
               fullWidth
               disabled={!userComment}
-              variant="contained"
+              variant="outlined"
               color="primary"
               onClick={handleMakeComment}
             >

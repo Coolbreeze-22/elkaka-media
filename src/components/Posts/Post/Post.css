@@ -1,6 +1,6 @@
 .posterCard {
   height: 100%;
-  box-shadow: 0px 0px 3px 0px #000b36;
+  box-shadow: 0px 0px 3px 0px #344caa;
   border-radius: 5px;
 }
 .postInfo {
@@ -12,20 +12,16 @@
   z-index: 10;
   background-color: #020c27;
   color: white;
-  box-shadow: 0px 0px 3px 0px #000b36;
+  box-shadow: 0px 0px 3px 0px #344caa;
   border-radius: 10px 0 0 10px;
 }
 .postInfoDiv1, .postInfoDiv2 {
   padding-right: 2px;
   margin: 10px;
   border-radius: 10px 0 0 10px;
-  box-shadow: 0px 0px 3px 0px #000b36;
+  box-shadow: 0px 0px 3px 0px #344caa;
 }
-.postMedia {
-  background-color: #84e713;
-  /* background-blend-mode:hard-light; */
-}
-.postNoMedia {
+.postSeeMore {
   color: gray;
   padding:  0 0 7px 7px;
  }

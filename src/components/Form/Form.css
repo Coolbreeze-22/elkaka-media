@@ -1,12 +1,12 @@
 .formNoUser {
-  box-shadow: 0px 0px 5px 0px #000b36;
+  box-shadow: 0px 0px 3px 0px #344caa;
   border-radius: 10px;
   padding: 10px 0;
   font-family: serif;
   text-align: center;
 }
 .formMain {
-  box-shadow: 0px 0px 5px 0px #000b36;
+  box-shadow: 0px 0px 3px 0px #344caa;
   border-radius: 4;
   margin-bottom: 20px;
   padding: 10px 0;
@@ -15,7 +15,7 @@
   margin: 15px;
 }
 form>.formTextField{
-  background-color: #051744;
+  background-color: #344caa;
   height: 45px;
   border-radius: 30px;
   margin-bottom: 20px;
