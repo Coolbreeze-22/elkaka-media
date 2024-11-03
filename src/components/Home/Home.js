@@ -81,7 +81,7 @@ const Home = () => {
                 value={title}
                 variant="outlined"
                 fullWidth
-                sx={{ backgroundColor:"#698be0", borderRadius:"30px" }}
+                className="HomeTextField"
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -90,7 +90,7 @@ const Home = () => {
                 label="Search Tags"
                 value={tags}
                 variant="outlined"
-                sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
+                className="HomeTextField"
                 fullWidth
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTags(e.target.value.split(","))}
@@ -98,7 +98,7 @@ const Home = () => {
               <Button
                 fullWidth
                 className="HomeSearchBtn"
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 disabled={!title && !tags.length}
                 onClick={searchPost}
@@ -108,7 +108,7 @@ const Home = () => {
               <center>
               <Button
                 className="HomeSearchBtn"
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 disabled={!title && !tags.length}
                 onClick={clear}

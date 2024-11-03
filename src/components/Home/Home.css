@@ -13,3 +13,9 @@ div>.HomeSearchBtn, center>.HomeSearchBtn{
     margin-top: 15px;
     padding: 10px;
 }
+section>.HomeTextField{
+    background-color: #051744;
+    height: 45px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}

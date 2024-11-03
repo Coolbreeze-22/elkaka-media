@@ -14,3 +14,9 @@
 .formForm {
   margin: 15px;
 }
+form>.formTextField{
+  background-color: #051744;
+  height: 45px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}

@@ -55,7 +55,7 @@ const Form = ({ page }) => {
     );
   } else {
     return (
-      <div className="formMain">
+      <main className="formMain">
         <form
           autoComplete="off"
           noValidate
@@ -78,7 +78,7 @@ const Form = ({ page }) => {
             label="Title"
             name="title"
             fullWidth
-            sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
+            className="formTextField"
             value={postData.title}
             onChange={(e) =>
               setPostData({ ...postData, title: e.target.value })
@@ -91,7 +91,7 @@ const Form = ({ page }) => {
             name="message"
             label="Message"
             value={postData.message}
-            sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
+            className="formTextField"
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })
             }
@@ -103,7 +103,7 @@ const Form = ({ page }) => {
             name="tags"
             label="Tags"
             value={postData.tags}
-            sx={{ margin: "10px 0", backgroundColor:"#698be0", borderRadius:"30px" }}
+            className="formTextField"
             onChange={(e) =>
               setPostData({ ...postData, tags: e.target.value.split(",") })
             }
@@ -141,7 +141,7 @@ const Form = ({ page }) => {
             Clear
           </Button>
         </form>
-      </div>
+      </main>
     );
   }
 };

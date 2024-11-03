@@ -89,7 +89,7 @@ const Auth = () => {
               <Input name="confirmPassword" label="Confirm Password" type={showPassword ? 'text' : 'password'} handleChange={handleChange} />
               )}
           </Grid>          
-          <Button type="submit" fullWidth variant="contained" color="primary" sx={{marginY:"10px"}}>
+          <Button type="submit" fullWidth variant="outlined" color="primary" sx={{marginY:"10px"}}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <Button fullWidth variant="text" disabled ><GoogleLogin 
