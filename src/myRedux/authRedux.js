@@ -50,7 +50,7 @@ const authRedux = (
       return { ...state, error: { ...state.error, userError: action.payload} };
 
     case USER_LOADING:
-      return { ...state, error: { ...state.error, userError: action.payload} };
+      return { ...state, isLoading: action.payload };
 
     default:
       return state;

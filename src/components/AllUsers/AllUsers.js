@@ -18,6 +18,7 @@ import { AdminPanelSettings, Person, Close } from "@mui/icons-material";
 const AllUsers = () => {
   const userProfile = process.env.REACT_APP_USER_PROFILE;
   const { users, isLoading } = useSelector((state) => state.auth);
+
   const user = JSON.parse(localStorage.getItem(userProfile))?.result;
   const [search, setSearch] = useState("");
   const [activeId, setActiveId] = useState("");
@@ -33,11 +34,11 @@ const AllUsers = () => {
   );
   const generalUsers = search ? searchedUser : users;
 
-  const admin1 = user?.isAdmin && user?.level > 0;
+  const admin1 = user?.isAdmin && user?.level >= 0;
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch, navigate]);
+  }, [dispatch]);
 
   const openUser = (id) => {
     navigate(`/users/user/${id}`);
@@ -53,18 +54,15 @@ const AllUsers = () => {
     dispatch(updateUserModel());
   };
 
-  if (!isLoading && !users.length)
-    return (
-      <center>
-        <h1 className="postsMessage">No Users</h1>
-      </center>
-    );
-
   if (admin1)
     return (
       <Container maxWidth="md" className="all">
         {isLoading ? (
           <CircularProgress size="3em" />
+        ) : !isLoading && !users.length ? (
+          <center>
+            <h1 className="postsMessage">No Users</h1>
+          </center>
         ) : (
           <>
             <div style={{ textAlign: "center", marginBottom: "15px" }}>
@@ -75,7 +73,10 @@ const AllUsers = () => {
                 value={search}
                 type="text"
                 size="small"
-                sx={{ backgroundColor: "white", borderRadius: "20px" }}
+                sx={{
+                  backgroundColor: "#ffffffda",
+                  borderRadius: "15px",
+                }}
                 onChange={(e) => setSearch(e.target.value)}
                 InputProps={
                   search && {
@@ -114,7 +115,12 @@ const AllUsers = () => {
                 <Typography variant="body2" className="allTypo2">
                   {u.email}
                 </Typography>
-                <Button variant="outlined" size="small" sx={{color:"white"}} onClick={() => openUser(u._id)}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{ color: "white" }}
+                  onClick={() => openUser(u._id)}
+                >
                   Profile
                 </Button>
               </div>

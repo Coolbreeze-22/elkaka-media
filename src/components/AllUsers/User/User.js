@@ -26,7 +26,12 @@ import { AdminPanelSettings, Close } from "@mui/icons-material";
 
 const User = () => {
   const userProfile = process.env.REACT_APP_USER_PROFILE;
-  const { user, isLoading, error: { userError }} = useSelector((state) => state.auth);
+  const {
+    user,
+    error: { userError },
+    isLoading,
+  } = useSelector((state) => state.auth);
+
   const localUser = JSON.parse(localStorage.getItem(userProfile)).result;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -87,17 +92,14 @@ const User = () => {
     handleErrorMessage(message);
   };
 
-  if (!isLoading && !user.email)
-    return (
-      <center>
-        <h1 className="postsMessage">No User</h1>
-      </center>
-    );
-
   return (
     <Container maxWidth="sm" className="user">
       {isLoading ? (
         <CircularProgress size="3em" />
+      ) : !isLoading && !user.email ? (
+        <center>
+          <h1 className="postsMessage">No Users</h1>
+        </center>
       ) : (
         <>
           <center>
@@ -193,7 +195,10 @@ const User = () => {
                       value={level}
                       type="number"
                       size="small"
-                      sx={{ backgroundColor: "white", borderRadius: "15px" }}
+                      sx={{
+                        backgroundColor: "#ffffffda",
+                        borderRadius: "15px",
+                      }}
                       onChange={(e) => setLevel(e.target.value)}
                       InputProps={
                         level && {
@@ -211,7 +216,7 @@ const User = () => {
                   <center className="userCenter">
                     <Button
                       variant="contained"
-                      color="warning"
+                      color="success"
                       sx={{ width: "80%", borderRadius: "30px" }}
                       onClick={() => handleLevel(user._id)}
                     >
@@ -225,7 +230,7 @@ const User = () => {
             <center>
               <Button
                 variant="contained"
-                color="warning"
+                color="success"
                 size="small"
                 style={{ marginTop: "20px", marginBottom: "10px" }}
                 onClick={() => handleMakeAdmin(user._id)}
@@ -270,7 +275,7 @@ const User = () => {
               (user.isAdmin && localUser.isOwner) ? (
                 <Button
                   variant="contained"
-                  color="warning"
+                  color="success"
                   size="small"
                   onClick={() => handleRemoveAdmin(user._id)}
                 >

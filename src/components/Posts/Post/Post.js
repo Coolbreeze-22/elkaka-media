@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import {
-  Card,
   CardActions,
   CardContent,
   CardMedia,
@@ -82,11 +81,11 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className="posterCard" >
+    <div className="posterCard">
       <div className="posterOverlay">
         <Button
           className="posterOverlayBtn"
-          sx={{ color: "white", zIndex: 9}}
+          sx={{ color: "white", zIndex: 9 }}
           size="small"
           onClick={() => setIsInfo(!isInfo)}
         >
@@ -98,7 +97,7 @@ const Post = ({ post }) => {
           <h4 className="postInfoH4">
             <div className="postInfoDiv1" onClick={() => openPost(post._id)}>
               <IconButton>
-              <Comment color="success" />
+                <Comment color="success" />
               </IconButton>
               Comments
             </div>
@@ -106,10 +105,14 @@ const Post = ({ post }) => {
               user?._id === post?.creatorId) && (
               <div
                 className="postInfoDiv1"
-                disabled={!user?._id && !user?.sub}
-                onClick={() => {setCurrentId(post._id); setIsInfo(false)}}
-              ><IconButton>
-                <Edit color="warning"/>
+                // disabled={!user?._id && !user?.sub} check y i commented this out
+                onClick={() => {
+                  setCurrentId(post._id);
+                  setIsInfo(false);
+                }}
+              >
+                <IconButton>
+                  <Edit color="warning" />
                 </IconButton>
                 Edit
               </div>
@@ -131,7 +134,7 @@ const Post = ({ post }) => {
                 onClick={() => dispatch(deletePost(post._id))}
               >
                 <IconButton>
-                  <Delete color="error"/>
+                  <Delete color="error" />
                 </IconButton>
                 Delete
               </div>
@@ -140,21 +143,29 @@ const Post = ({ post }) => {
         </div>
       )}
       <center onClick={() => posterProfile(post.creatorId)}>
-      <Avatar
-              src={post.picture}
-              alt={post.name.charAt(0)}
-              sx={{ marginTop: "2px", border: "1px solid white" }} >{post.name.charAt(0)}</Avatar>
-          <h3 style={{ fontFamily: "monospace", margin:"5px" }}>{post.name}</h3>
+        <Avatar
+          src={post.picture}
+          alt={post.name.charAt(0)}
+          sx={{ marginTop: "2px", border: "1px solid white" }}
+        >
+          {post.name.charAt(0)}
+        </Avatar>
+        <h3 style={{ fontFamily: "monospace", margin: "5px" }}>{post.name}</h3>
       </center>
-      <CardContent onClick={() => {setIsInfo(false); openPost(post._id)}}>
+      <CardContent
+        onClick={() => {
+          setIsInfo(false);
+          openPost(post._id);
+        }}
+      >
         <Typography variant="h6">{post.title}</Typography>
         <Typography className="posterMessage" variant="body1" gutterBottom>
           {post.message}
         </Typography>
       </CardContent>
-        <Typography variant="body2" color="darkgray" sx={{margin:"3px"}}>
-          {post.tags.map((tag) => `#${tag} `)}
-        </Typography>
+      <Typography variant="body2" color="darkgray" sx={{ margin: "3px" }}>
+        {post.tags.map((tag) => `#${tag} `)}
+      </Typography>
       <Typography variant="caption" sx={{ paddingLeft: "10px" }}>
         {moment(post.createdAt).fromNow()}
       </Typography>
@@ -177,18 +188,18 @@ const Post = ({ post }) => {
         </Button>
       </CardActions>
       <div className="posterDivBtn" onClick={() => openPost(post._id)}>
-      {post.selectedFile ?
-        <CardMedia
-          className="postMedia"
-          sx={{ paddingTop: "100%" }}
-          image={post.selectedFile}
-          title={post.title}
-        /> : <footer
-        className="postSeeMore"
-        onClick={() => openPost(post._id)}
-      >
-        <em>see more...</em>
-      </footer>}
+        {post.selectedFile ? (
+          <CardMedia
+            className="postMedia"
+            sx={{ paddingTop: "100%" }}
+            image={post.selectedFile}
+            title={post.title}
+          />
+        ) : (
+          <footer className="postSeeMore" onClick={() => openPost(post._id)}>
+            <em>see more...</em>
+          </footer>
+        )}
       </div>
     </div>
   );

@@ -134,7 +134,7 @@ const Profile = () => {
           variant="contained"
           color="error"
           size="small"
-          sx={{marginTop:"20px"}}
+          sx={{marginTop:"50px"}}
           disabled={deleteWarningId ? true : false}
           onClick={() => setDeleteWarningId(user._id)}
         >

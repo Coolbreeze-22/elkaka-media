@@ -6,24 +6,37 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/postActions";
 import { useSelector } from "react-redux";
 import { PostContext } from "../../context/context";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Form = ({ page }) => {
   const userProfile = process.env.REACT_APP_USER_PROFILE;
   const initial = { title: "", message: "", tags: "", selectedFile: "" };
-  const user = JSON.parse(localStorage.getItem(userProfile));
   const { currentId, setCurrentId } = useContext(PostContext);
   const post = useSelector((state) =>
     currentId ? state.posts.posts.find((p) => p._id === currentId) : null
   );
   const [postData, setPostData] = useState(initial);
   const [formError, setFormError] = useState("");
+
+  const storedUser = localStorage.getItem(userProfile);
+    const [userData, setUserData] = useState(
+      storedUser ? JSON.parse(storedUser) : {}
+    );
+    const user = userData?.result;
+    const token = userData?.token;
+
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem(userProfile);
+    setUserData(storedUser ? JSON.parse(storedUser) : {});
+  }, [location, user?.id]);
 
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
+
   const requiredInput = postData.title && postData.message;
 
   const handleSubmit = (e) => {
@@ -46,7 +59,7 @@ const Form = ({ page }) => {
     setFormError("");
   };
 
-  if (!user?.token) {
+  if (!token) {
     return (
       <div className="formNoUser">
         Sign in to create your memories
@@ -120,7 +133,7 @@ const Form = ({ page }) => {
           </div>
 
           <Button
-            sx={{ marginY: "8px" }}
+            sx={{ marginY: "20px" }}
             variant="outlined"
             color="primary"
             size="medium"
@@ -131,11 +144,11 @@ const Form = ({ page }) => {
           </Button>
 
           <Button
-            sx={{ marginBottom: "8px" }}
+            sx={{ marginTop: "20px" }}
             variant="outlined"
             color="error"
             size="small"
-            fullWidth
+            // fullWidth
             onClick={clear}
           >
             Clear

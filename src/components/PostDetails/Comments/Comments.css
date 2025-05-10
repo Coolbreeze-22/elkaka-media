@@ -1,42 +1,53 @@
-
-
-
-@media only screen and (min-width: 600px) {
-  .comment {
-    box-sizing: border-box;
-  }
-  .comment2a {
-    background-color: #00081b;
-    max-height: 400px;
-    overflow-y: scroll;
-  }
-  .comment2b {
-    background-color: #00081b;
-    padding: 0.5px 0;
-  }
-  .comment4 {
-    padding:  20px 20px;
-  }
+.comment2a {
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
 }
 
-@media only screen and (max-width: 600px) {
-  .commentMain{
-    box-shadow: 0px 0px 3px 0px #344caa;
+@media (max-width: 600px) {
+  .commentMain {
+    box-shadow: 0px 0px 3px 0px #24367e;
   }
   .comment {
     box-sizing: border-box;
     padding-bottom: 10px;
   }
   .comment2a {
-    background-color: #00081b;
     max-height: 300px;
-    overflow-y: scroll;
   }
   .comment2b {
-    background-color: #00081b;
     padding: 0.5px 0;
   }
   .comment4 {
     margin: 20px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .comment {
+    box-sizing: border-box;
+  }
+  .comment2a {
+    max-height: 450px;
+  }
+  .comment2b {
+    padding: 0.5px 0;
+  }
+  .comment4 {
+    padding: 20px 20px;
+  }
+}
+
+@media (min-width: 789px) {
+  .comment {
+    box-sizing: border-box;
+  }
+  .comment2a {
+    max-height: 400px;
+  }
+  .comment2b {
+    padding: 0.5px 0;
+  }
+  .comment4 {
+    padding: 20px 20px;
   }
 }

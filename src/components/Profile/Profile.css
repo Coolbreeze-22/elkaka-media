@@ -1,15 +1,16 @@
-.profile{
-    color: white;
-    padding: 15px 15px 40px 15px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 3px 0px #344caa;
-    transition: 2s;
+.profile {
+  color: white;
+  padding: 15px 15px 40px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0px #24367e;
+  transition: 2s;
 }
 
-.profileTypo1{border-bottom: 1px dotted #4954e9;
+.profileTypo1 {
+  border-bottom: 1px dotted #24367e;
 }
-.profileSpan{
-    color: #a7c5ec;
-    font-size: 20px;
-    font-family:monospace ;
+.profileSpan {
+  color: #a7c5ec;
+  font-size: 20px;
+  font-family: monospace;
 }

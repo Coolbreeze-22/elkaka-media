@@ -21,8 +21,13 @@ const Input = ({
       variant="outlined"
       required
       fullWidth
-      sx={{backgroundColor:"#051744", borderRadius:"30px"}}
-      InputProps={ name === "password" ? {
+      sx={{
+        backgroundColor: "#ffffff",
+        borderRadius: "15px",
+      }}
+      InputProps={
+        name === "password"
+          ? {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleShowPassword}>
@@ -30,7 +35,9 @@ const Input = ({
                   </IconButton>
                 </InputAdornment>
               ),
-            } : null}
+            }
+          : null
+      }
     />
   </Grid>
 );

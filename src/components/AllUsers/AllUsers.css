@@ -1,5 +1,5 @@
 .all{
-    box-shadow: 0px 0px 3px 0px #344caa;
+    box-shadow: 0px 0px 3px 0px #24367e;
     padding: 50px 0px;
     border-radius: 5px;
     transition: 2s;
@@ -12,7 +12,7 @@
     justify-content: space-between;
     margin-bottom: 5px;
     padding: 5px;
-    border-bottom: 1px dotted #344caa;
+    border-bottom: 1px dotted #24367e;
     border-radius: 10px;
 }
 .allTypo1{

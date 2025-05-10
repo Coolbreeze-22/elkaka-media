@@ -9,6 +9,8 @@ export const FETCH_POST_BY_SEARCH = 'FETCH_POST_BY_SEARCH';
 export const FETCH_RELATED_POSTS = 'FETCH_RELATED_POSTS';
 export const FETCH_POST_BY_ID = 'FETCH_ID';
 export const FETCH_OTHERS = 'FETCH_OTHERS';
+export const RESET_POSTS = 'RESET_POSTS';
+export const RESET_POST = 'RESET_POST';
 export const POST_LOADING = 'POST_LOADING';
 
 export const AUTH = 'AUTH';

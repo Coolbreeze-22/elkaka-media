@@ -1,49 +1,79 @@
-  
-  .postDetailsRecommendCenter {
-    text-transform: capitalize;
-  }
+.postDetailsRecommendCenter {
+  text-transform: capitalize;
+}
 
-  
-@media only screen and (max-width: 600px) {
-    .postDetailsPost {
-        box-shadow: 0px 0px 3px 0px #344caa;
-      }
-      .postDetailsDiv1 {
-        padding: 10px 0 10px 10px;
-      }
-    .postDetailsImg {
-    max-height: 700px;
+@media (max-width: 600px) {
+  .postDetailsPost {
+    box-shadow: 0px 0px 3px 0px #24367e;
+  }
+  .postDetailsDiv1 {
+    box-sizing: border-box;
+    padding: 10px 0 10px 10px;
+  }
+  .postDetailsImg {
+    max-height: 500px;
     width: 100%;
   }
-  .postDetailsComment{
+  .postDetailsComment {
     margin-top: 20px;
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media (min-width: 601px) and (max-width: 768px) {
   .postDetailsMain {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .postDetailsPost {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    box-shadow: 0px 0px 3px 0px #24367e;
+  }
+  .postDetailsDiv1 {
+    padding: 10px 5px 0 10px;
+  }
+  .postDetailsImg {
+    max-height: 400px;
+    width: 100%;
+  }
+  .postDetailsComment {
+    flex-basis: 50%;
+    box-shadow: 0px 0px 3px 0px #24367e;
+  }
+}
+
+@media (min-width: 789px) {
+  .postDetailsMain {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
     justify-content: space-between;
     margin-bottom: 10px;
   }
   .postDetailsPost {
     display: flex;
     flex-direction: row;
-    flex-basis: 60%;
-    box-shadow: 0px 0px 3px 0px #344caa;
+    gap: 15px;
+    flex-basis: 58%;
+    box-shadow: 0px 0px 3px 0px #24367e;
   }
   .postDetailsDiv1 {
+    flex-basis: 45%;
     padding: 10px 5px 0 10px;
   }
+   .postDetailsImg-wrapper{
+    flex-basis: 55%;
+  }
   .postDetailsImg {
-    max-height: 550px;
-    width: 400px;
+    max-height: 500px;
+    width: 100%;
   }
-  .postDetailsComment{
-    flex-basis: 37%;
-    box-shadow: 0px 0px 3px 0px #344caa;
+  .postDetailsComment {
+    flex-basis: 38%;
+    box-shadow: 0px 0px 3px 0px #24367e;
   }
-  
 }

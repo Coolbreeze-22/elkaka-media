@@ -7,7 +7,6 @@ import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import Paginate from "../Pagination/Pagination";
 import { getPostsBySearch, getPosts } from "../../actions/postActions";
-
 import { Grid, Grow, TextField, Button } from "@mui/material";
 
 function useQuery() {
@@ -35,9 +34,6 @@ const Home = () => {
           tags.join(",") || "none"
         }&page=${page}`
       );
-      setTimeout(() => {
-        
-      }, 3000);
     }
   };
 
@@ -73,7 +69,7 @@ const Home = () => {
     <Grow in>
       <div>
         <Grid container spacing={3} className="HomeGrid">
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={4} md={3}>
             <section className="homeSearch">
               <TextField
                 name="memories"
@@ -84,6 +80,9 @@ const Home = () => {
                 className="HomeTextField"
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTitle(e.target.value)}
+                sx={{
+                  backgroundColor: "#ffffffda",
+                }}
               />
               <TextField
                 name="tags"
@@ -94,6 +93,9 @@ const Home = () => {
                 fullWidth
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setTags(e.target.value.split(","))}
+                sx={{
+                  backgroundColor: "#ffffffda",
+                }}
               />
               <Button
                 fullWidth
@@ -102,25 +104,26 @@ const Home = () => {
                 color="primary"
                 disabled={!title && !tags.length}
                 onClick={searchPost}
+                sx={{ marginY: "20px" }}
               >
                 Search
               </Button>
               <center>
-              <Button
-                className="HomeSearchBtn"
-                variant="outlined"
-                color="secondary"
-                disabled={!title && !tags.length}
-                onClick={clear}
-              >
-                Clear
-              </Button>
+                <Button
+                  className="HomeSearchBtn"
+                  variant="outlined"
+                  color="secondary"
+                  disabled={!title && !tags.length}
+                  onClick={clear}
+                >
+                  Clear
+                </Button>
               </center>
-            </section >
+            </section>
             <Form page={page} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={9} className="HomeGrid2">
+          <Grid item xs={12} sm={8} md={9} className="HomeGrid2">
             <Posts />
             {posts.length ? (
               <div className="HomePaginate">

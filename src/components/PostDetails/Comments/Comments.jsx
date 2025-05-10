@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Comments.css";
 import { useDispatch } from "react-redux";
-import { Typography, TextField, Button, Grid, IconButton, Divider } from "@mui/material";
+import {
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  IconButton,
+  Divider,
+} from "@mui/material";
 import { commentPost, deleteComment } from "../../../actions/postActions";
 import { Delete } from "@mui/icons-material";
 
@@ -12,7 +19,7 @@ const Comments = ({ post }) => {
   const [userComment, setUserComment] = useState("");
   const dispatch = useDispatch();
   const commentsRef = useRef();
-  
+
   useEffect(() => {
     setComments(post?.comments);
   }, [post._id, post.comments.length]);
@@ -66,8 +73,7 @@ const Comments = ({ post }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  {
-                  user?.sub === comment?.creatorId ||
+                  {user?.sub === comment?.creatorId ||
                   user?._id === comment?.creatorId ||
                   user?.sub === post?.creatorId ||
                   user?._id === post?.creatorId ||
@@ -90,12 +96,13 @@ const Comments = ({ post }) => {
                   ) : null}
                 </Grid>
                 <Grid item xs={12}>
-                  <Divider sx={{ backgroundColor:"#344caa"}}/></Grid>
+                  <Divider sx={{ backgroundColor: "#24367e" }} />
+                </Grid>
                 <div ref={commentsRef} />
               </Grid>
             ))
           ) : (
-            <center >
+            <center>
               <h2>Hey!</h2>
               <h4>
                 <em>
@@ -113,15 +120,15 @@ const Comments = ({ post }) => {
               fullWidth
               rows={2}
               variant="outlined"
-              sx={{backgroundColor:"#344caa", borderRadius:"20px"}}
+              sx={{ backgroundColor: "#ffffffda", borderRadius: "10px" }}
               label="Comment"
               multiline
               value={userComment}
               onChange={(e) => setUserComment(e.target.value)}
             />
             <Button
-              sx={{ marginTop: "10px" }}
-              fullWidth
+              sx={{ marginTop: "30px" }}
+              // fullWidth
               disabled={!userComment}
               variant="outlined"
               color="primary"

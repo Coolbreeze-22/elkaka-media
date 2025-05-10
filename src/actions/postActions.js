@@ -32,28 +32,36 @@ export const getPostById = (id) => async (dispatch) => {
     dispatch({ type: POST_LOADING, payload: true });
     const { data } = await api.getPostById(id);
     dispatch({ type: FETCH_POST_BY_ID, payload: data });
+
+    if (data?.tags) {
+      dispatch(getRelatedPosts({ tags: data.tags.join(",") }));
+    }
+
     dispatch({ type: POST_LOADING, payload: false });
   } catch (error) {
     dispatch({ type: POST_LOADING, payload: false });
   }
 };
 
+export function getRelatedPosts(searchQuery) {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: POST_LOADING, payload: true });
+      const { data } = await api.getRelatedPosts(searchQuery);
+      dispatch({ type: FETCH_RELATED_POSTS, payload: data });
+      dispatch({ type: FETCH_OTHERS, payload: data });
+      dispatch({ type: POST_LOADING, payload: false });
+    } catch (error) {
+      dispatch({ type: POST_LOADING, payload: false });
+    }
+  };
+}
+
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: POST_LOADING, payload: true });
     const { data } = await api.getPostsBySearch(searchQuery);
     dispatch({ type: FETCH_POST_BY_SEARCH, payload: data });
-    dispatch({ type: FETCH_OTHERS, payload: data });
-    dispatch({ type: POST_LOADING, payload: false });
-  } catch (error) {
-    dispatch({ type: POST_LOADING, payload: false });
-  }
-};
-export const getRelatedPosts = (searchQuery) => async (dispatch) => {
-  try {
-    dispatch({ type: POST_LOADING, payload: true });
-    const { data } = await api.getRelatedPosts(searchQuery);
-    dispatch({ type: FETCH_RELATED_POSTS, payload: data });
     dispatch({ type: FETCH_OTHERS, payload: data });
     dispatch({ type: POST_LOADING, payload: false });
   } catch (error) {
@@ -97,10 +105,7 @@ export const commentPost = (comment, id) => async (dispatch) => {
   try {
     const { data } = await api.commentPost(comment, id);
     dispatch({ type: COMMENT, payload: data });
-    console.log(data.comments);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 export const deleteComment = (commentId, postId) => async (dispatch) => {
   try {
