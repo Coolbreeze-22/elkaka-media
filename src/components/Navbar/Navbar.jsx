@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import Things from "../../images/Things.jpg";
 import { Typography, Link, Avatar, Button, IconButton } from "@mui/material";
@@ -9,15 +9,13 @@ import decode from "jwt-decode";
 import SideBar from "./SideBar/SideBar";
 
 const Navbar = () => {
-  const userProfile = process.env.REACT_APP_USER_PROFILE;
   const [sideBar, setSideBar] = useState(false);
 
-  const storedUser = localStorage.getItem(userProfile);
-  const [userData, setUserData] = useState(
-    storedUser ? JSON.parse(storedUser) : {}
-  );
-
-  const user = userData?.result;
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
+  const storedUser = localStorage.getItem(userProfile)
+    ? JSON.parse(localStorage.getItem(userProfile))
+    : {};
+  const user = storedUser?.result;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,15 +35,14 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const token = userData?.token;
+    const token = storedUser?.token;
     if (token) {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < Date.now()) {
         logout();
-        setUserData((prev) => {});
       }
     }
-  }, [location, user?.id]);
+  }, [location]);
 
   return (
     <header>

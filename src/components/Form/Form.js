@@ -6,10 +6,8 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/postActions";
 import { useSelector } from "react-redux";
 import { PostContext } from "../../context/context";
-import { useLocation } from "react-router-dom";
 
 const Form = ({ page }) => {
-  const userProfile = process.env.REACT_APP_USER_PROFILE;
   const initial = { title: "", message: "", tags: "", selectedFile: "" };
   const { currentId, setCurrentId } = useContext(PostContext);
   const post = useSelector((state) =>
@@ -18,20 +16,14 @@ const Form = ({ page }) => {
   const [postData, setPostData] = useState(initial);
   const [formError, setFormError] = useState("");
 
-  const storedUser = localStorage.getItem(userProfile);
-    const [userData, setUserData] = useState(
-      storedUser ? JSON.parse(storedUser) : {}
-    );
-    const user = userData?.result;
-    const token = userData?.token;
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
+  const storedUser = localStorage.getItem(userProfile)
+    ? JSON.parse(localStorage.getItem(userProfile))
+    : {};
+  const user = storedUser?.result;
+  const token = storedUser?.token;
 
   const dispatch = useDispatch();
-  const location = useLocation();
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem(userProfile);
-    setUserData(storedUser ? JSON.parse(storedUser) : {});
-  }, [location, user?.id]);
 
   useEffect(() => {
     if (post) setPostData(post);

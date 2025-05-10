@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Post.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -21,20 +21,20 @@ import {
   Comment,
 } from "@mui/icons-material";
 import { PostContext } from "../../../context/context";
-import {
-  deletePost,
-  likePost,
-  getPostById,
-} from "../../../actions/postActions";
+import { deletePost, likePost } from "../../../actions/postActions";
 
 const Post = ({ post }) => {
-  const userProfile = process.env.REACT_APP_USER_PROFILE;
   const { setCurrentId } = useContext(PostContext);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem(userProfile))?.result;
   const [likes, setLikes] = useState(post?.likes);
   const [isInfo, setIsInfo] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const userProfile = process.env.REACT_APP_USER_PROFILE;
+  const storedUser = localStorage.getItem(userProfile)
+    ? JSON.parse(localStorage.getItem(userProfile))
+    : {};
+  const user = storedUser?.result;
 
   const userId = user?.sub || user?._id;
   const hasLiked = likes.find((id) => id === userId);
