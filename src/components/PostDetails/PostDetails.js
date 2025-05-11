@@ -38,13 +38,29 @@ export const PostDetails = () => {
       <div className="postDetailsMain">
         <div className="postDetailsPost">
           <div className="postDetailsDiv1">
-            <Typography variant="h5" gutterBottom component="center">
+            <Typography gutterBottom component="center" sx={{
+            fontSize: {
+              xs: 18,
+              sm: 20
+            },
+            fontWeight:"500"
+          }}>
               {post.title}
             </Typography>
-            <Typography variant="body1" gutterBottom component="p">
+            <Typography variant="body1" gutterBottom component="p" sx={{
+            fontSize: {
+              xs: 14,
+              sm: 16,
+            },
+          }}>
               {post.message}
             </Typography>
-            <Typography variant="h6" gutterBottom color="gray">
+            <Typography variant="h6" gutterBottom color="gray" sx={{
+            fontSize: {
+              xs: 15,
+              sm: 17,
+            },
+          }}>
               {post.tags.map((tag) => `#${tag} `)}
             </Typography>
             <Typography
@@ -52,11 +68,16 @@ export const PostDetails = () => {
               sx={{
                 color: "#8ea5ff",
                 padding: "3px",
+                fontSize: {
+              xs: 14,
+              sm: 16,
+            },
               }}
             >
               Likes: {post.likes.length}
             </Typography>
-            <Typography gutterBottom sx={{ textTransform: "capitalize" }}>
+            <Typography gutterBottom sx={{ textTransform: "capitalize", fontSize:{xs: 14,
+              sm: 16} }}>
               Posted by: {post.name}
             </Typography>
             <Typography variant="body2" gutterBottom color="gray">
@@ -65,7 +86,12 @@ export const PostDetails = () => {
             <Divider
               sx={{ margin: "10px 5px 10px -5px", backgroundColor: "#24367e" }}
             />
-            <Typography variant="body1" paddingBottom={"8px"}>
+            <Typography variant="body1" paddingBottom={"8px"} sx={{
+            fontSize: {
+              xs: 14,
+              sm: 16
+            },
+          }}>
               <strong>Realtime Chat - coming soon!</strong>
             </Typography>
           </div>

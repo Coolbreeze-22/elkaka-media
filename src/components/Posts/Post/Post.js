@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./Post.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -145,10 +145,10 @@ const Post = ({ post }) => {
       <center onClick={() => posterProfile(post.creatorId)}>
         <Avatar
           src={post.picture}
-          alt={post.name.charAt(0)}
+          alt={user.name.charAt(0)}
           sx={{ marginTop: "2px", border: "1px solid white" }}
         >
-          {post.name.charAt(0)}
+          {user?.name.charAt(0)}
         </Avatar>
         <h3 style={{ fontFamily: "monospace", margin: "5px" }}>{post.name}</h3>
       </center>
@@ -159,7 +159,17 @@ const Post = ({ post }) => {
         }}
       >
         <Typography variant="h6">{post.title}</Typography>
-        <Typography className="posterMessage" variant="body1" gutterBottom>
+        <Typography
+          className="posterMessage"
+          variant="body1"
+          gutterBottom
+          sx={{
+            fontSize: {
+              xs: 14,
+              sm: 15,
+            },
+          }}
+        >
           {post.message}
         </Typography>
       </CardContent>

@@ -64,7 +64,16 @@ const Comments = ({ post }) => {
                 }}
               >
                 <Grid item xs={10}>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography
+                    gutterBottom
+                    variant="subtitle1"
+                    sx={{
+                      fontSize: {
+                        xs: 14,
+                        sm: 16,
+                      },
+                    }}
+                  >
                     <b style={{ textTransform: "capitalize" }}>
                       {comment?.message?.split(":")[0]}:
                     </b>

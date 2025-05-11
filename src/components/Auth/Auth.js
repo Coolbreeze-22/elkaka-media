@@ -7,7 +7,6 @@ import jwt_decode from "jwt-decode";
 import {
   Avatar,
   Button,
-  Paper,
   Grid,
   Typography,
   Container,
@@ -48,13 +47,12 @@ const Auth = () => {
     };
   }, [authError, isTrigger]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let message;
     if (isSignup) {
-      message = await dispatch(signUp(formData, navigate));
+      dispatch(signUp(formData, navigate));
     } else {
-      message = await dispatch(signIn(formData, navigate));
+      dispatch(signIn(formData, navigate));
     }
     setIsTrigger(!isTrigger);
   };

@@ -32,7 +32,6 @@ const RecommendedPost = () => {
             boxShadow: "0 0 3px 0 #24367e",
           }}
         >
-          {/* <CircularProgress size="4em" /> */}
           Related posts will appear here
         </div>
       ) : (
