@@ -145,7 +145,7 @@ const Post = ({ post }) => {
       <center onClick={() => posterProfile(post.creatorId)}>
         <Avatar
           src={post.picture}
-          alt={user.name.charAt(0)}
+          alt={user?.name.charAt(0)}
           sx={{ marginTop: "2px", border: "1px solid white" }}
         >
           {user?.name.charAt(0)}
